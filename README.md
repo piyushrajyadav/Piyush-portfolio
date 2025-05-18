@@ -47,13 +47,13 @@ You can see a live demo of the portfolio website at [https://piyush-yadav-portfo
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/piyushyadav/3D-Portfolio
+git clone https://github.com/piyushrajyadav/Piyush-portfolio
 ```
 
 2. Change to the project directory:
 
 ```bash
-cd 3d-portfolio
+cd Piyush-portfolio
 ```
 
 3. Install the project dependencies:
@@ -82,4 +82,4 @@ The project structure is organized as follows:
 
 ## Author
 
--   [@piyushyadav](https://github.com/piyushyadav)
+-   [@piyushyadav](https://github.com/piyushrajyadav)

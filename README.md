@@ -1,9 +1,4 @@
-# 3D Portfolio
-
-![Portfolio Screenshot](/![image](https://github.com/user-attachments/assets/6fb39211-b0da-4d0d-94c2-c0253f532ea4)
-)
-
-3D Portfolio is my personal portfolio website created using Next.js, Tailwind CSS, Three.js, React Three Fiber, and a collection of other technologies. This website showcases my skills, experiences, projects, and allows users to contact me. It also offers a dark and light theme to enhance the user experience.
+This is my personal portfolio website created using Next.js, Tailwind CSS, Three.js, React Three Fiber, and a collection of other technologies. This website showcases my skills, experiences, projects, and allows users to contact me. It also offers a dark and light theme to enhance the user experience.
 
 ## Table of Contents
 

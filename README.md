@@ -1,6 +1,7 @@
 # 3D Portfolio
 
-![Portfolio Screenshot](/public/assets/readme_assets/screenshot.png)
+![Portfolio Screenshot](/![image](https://github.com/user-attachments/assets/6fb39211-b0da-4d0d-94c2-c0253f532ea4)
+)
 
 3D Portfolio is my personal portfolio website created using Next.js, Tailwind CSS, Three.js, React Three Fiber, and a collection of other technologies. This website showcases my skills, experiences, projects, and allows users to contact me. It also offers a dark and light theme to enhance the user experience.
 
@@ -16,7 +17,7 @@
 
 ## Demo
 
-You can see a live demo of the portfolio website at [https://piyush-yadav-portfolio.vercel.app/](https://piyush-yadav-portfolio.vercel.app/).
+You can see a live demo of the portfolio website at [https://piyush-yadav-portfolio.vercel.app/](https://piyush-portfolio-nine.vercel.app/).
 
 ## Features
 

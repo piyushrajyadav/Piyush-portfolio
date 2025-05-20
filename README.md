@@ -1,5 +1,15 @@
 This is my personal portfolio website created using Next.js, Tailwind CSS, Three.js, React Three Fiber, and a collection of other technologies. This website showcases my skills, experiences, projects, and allows users to contact me. It also offers a dark and light theme to enhance the user experience.
 
+
+![image](https://github.com/user-attachments/assets/910d77f2-d472-46f3-b44d-a2dc9afd6cd1)
+
+![image](https://github.com/user-attachments/assets/bdb24f2f-6fd1-4f5e-839c-6abb8f0c6f50)
+
+![image](https://github.com/user-attachments/assets/423c255e-b342-4240-9623-88525e453046)
+
+
+
+
 ## Table of Contents
 
 1.  [Demo](#demo)

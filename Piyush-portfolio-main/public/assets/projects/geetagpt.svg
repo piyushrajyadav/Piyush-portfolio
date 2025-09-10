@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#1e293b"/>
+  <circle cx="400" cy="250" r="120" fill="#4f46e5" opacity="0.9"/>
+  <path d="M320 350 L480 350 L400 480 Z" fill="#a855f7" opacity="0.9"/>
+  <circle cx="400" cy="250" r="60" fill="#ffffff" opacity="0.3"/>
+  <text x="400" y="520" font-family="Arial" font-size="40" fill="white" text-anchor="middle">GeetaGPT</text>
+  <text x="400" y="560" font-family="Arial" font-size="20" fill="#94a3b8" text-anchor="middle">AI-Powered Spiritual Guide</text>
+</svg> 

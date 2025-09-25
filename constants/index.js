@@ -217,8 +217,10 @@ const experiences = [
     date: "March 2025 - Present",
     points: [
       "Contributed to the official company website using Next.js and Tailwind CSS.",
-      "Built and implemented timesheet functionality using PHP Laravel and MySQL.",
-      "Worked on full-stack development, including UI design and API integration."
+      "Developed and contributed to ERP HR and CRM sections of Alphaxine ERP system with Spring Boot backend, React frontend, and MySQL database.",
+      "Built comprehensive HR module features including master data configuration by admin for employee management, role-based access control, and automated workflow systems.",
+      "Implemented CRM functionalities with customer relationship tracking, lead management, and sales pipeline automation integrated with the existing ERP infrastructure.",
+      "Designed and developed scalable database schemas and RESTful APIs to support HR and CRM operations, ensuring seamless data flow between modules."
     ],
   },
   {
@@ -274,8 +276,8 @@ const projects = [
       },
     ],
     image: "/assets/projects/geetagpt.svg",
-    // source_code_link: "https://github.com/piyushrajyadav/GeetaGPT",
-    // deployed_link: "https://geetagpt.vercel.app",
+    source_code_link: "https://github.com/piyushrajyadav/geeta-gpt",
+    deployed_link: "https://geeta-gpt.vercel.app/",
   },
   {
     name: "TypePulse - Typing Speed Test Website",
@@ -304,38 +306,34 @@ const projects = [
       },
     ],
     image: "/assets/projects/typepulse.svg",
-    // source_code_link: "https://github.com/piyushrajyadav/TypePulse",
-    // deployed_link: "https://typepulse.vercel.app",
+    source_code_link: "https://github.com/piyushrajyadav/TypePulse",
+    deployed_link: "https://typepulse.vercel.app/",
   },
   {
-    name: "Phishing Detection Website",
+    name: "AI Meeting Summarizer",
     description:
-      "An advanced web application that detects phishing URLs using ML algorithms, analyzing URLs to identify potential phishing attempts and protect users from online threats.",
+      "An intelligent meeting summarizer that converts meeting notes into comprehensive summaries with key insights and action items. Features email integration to automatically send summaries to participants, streamlining post-meeting workflows and ensuring nothing is missed.",
     tags: [
       {
         name: "next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "python",
+        name: "genai",
         color: "green-text-gradient",
       },
       {
-        name: "flask",
+        name: "email-integration",
         color: "pink-text-gradient",
       },
       {
-        name: "ml",
+        name: "nlp",
         color: "orange-text-gradient",
       },
-      {
-        name: "aws",
-        color: "blue-text-gradient",
-      },
     ],
-    image: "/assets/projects/phishing-detection.svg",
-    // source_code_link: "https://github.com/piyushrajyadav/PhishingDetection",
-    // deployed_link: "https://phishing-detection.vercel.app",
+    image: "/assets/projects/ai-meeting-summarizer.svg",
+    source_code_link: "https://github.com/piyushrajyadav/AI-Meeting-summarizer",
+    deployed_link: "https://meeting-notes-theta.vercel.app/",
   },
   {
     name: "CodeExplainer - NLP-Powered Code Explanation",
@@ -368,8 +366,8 @@ const projects = [
       },
     ],
     image: "/assets/projects/code-explainer.svg",
-    // source_code_link: "https://github.com/piyushrajyadav/CodeExplainer",
-    // deployed_link: "https://code-explainer.vercel.app",
+    source_code_link: "https://github.com/piyushrajyadav/code-explainer",
+    deployed_link: "https://github.com/piyushrajyadav",
   },
   {
     name: "Smart Legal Assistant",
@@ -394,8 +392,60 @@ const projects = [
       },
     ],
     image: "/assets/projects/legal-assistant.svg",
-    // source_code_link: "https://github.com/piyushrajyadav/LegalAssistant",
-    // deployed_link: "https://legal-assistant.vercel.app",
+    source_code_link: "https://github.com/piyushrajyadav/DigiLex-ai",
+    deployed_link: "https://github.com/piyushrajyadav",
+  },
+  {
+    name: "DropFade - File Management System",
+    description:
+      "A secure file and text sharing platform where users can upload files and receive a unique code. Anyone with the code can access the exact file without login. Files are automatically deleted permanently from the cloud database after access for enhanced security. Featured in top 20 products on Product Hunt for several hours with international user base, created to help college friends avoid WhatsApp login hassles in labs for assignment sharing.",
+    tags: [
+      {
+        name: "next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "shadcn",
+        color: "green-text-gradient",
+      },
+      {
+        name: "redis",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "cloud-storage",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/dropfade.svg",
+    source_code_link: "https://github.com/piyushrajyadav/dropfade",
+    deployed_link: "https://dropfade.piyushyadav.me/",
+  },
+  {
+    name: "CodeTrail - AI-Powered Career Guidance",
+    description:
+      "Upload your resume and GitHub profile to get personalized skill gap analysis, role recommendations, project suggestions, and a custom learning roadmap. Powered by generative AI to provide intelligent career guidance for developers.",
+    tags: [
+      {
+        name: "next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "supabase",
+        color: "green-text-gradient",
+      },
+      {
+        name: "genai",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "career-guidance",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/codetrail.svg",
+    source_code_link: "https://github.com/piyushrajyadav/CodeTrail",
+    deployed_link: "https://code-trail-dusky.vercel.app/",
   },
 ];
 
@@ -425,7 +475,7 @@ const socials = [
 const heroTexts = [
   "Software Developer",
   500,
-  "Cybersecurity Enthusiast",
+  "AI Enthusiast",
   500,
   "Full-Stack developer",
   500,

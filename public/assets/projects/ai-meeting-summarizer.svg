@@ -1,0 +1,135 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ai-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="meeting-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bg-gradient)"/>
+
+  <!-- AI Brain Icon -->
+  <g transform="translate(50, 50)">
+    <circle cx="40" cy="40" r="35" fill="url(#ai-gradient)" opacity="0.3"/>
+    <path d="M 15 40 Q 40 15, 65 40 Q 40 65, 15 40" fill="url(#ai-gradient)" opacity="0.8"/>
+    <circle cx="30" cy="35" r="3" fill="white"/>
+    <circle cx="50" cy="35" r="3" fill="white"/>
+    <circle cx="40" cy="50" r="2" fill="white"/>
+    <path d="M 25 45 Q 40 35, 55 45" stroke="white" stroke-width="2" fill="none"/>
+    
+    <!-- Neural connections -->
+    <g opacity="0.6">
+      <line x1="20" y1="25" x2="35" y2="35" stroke="#3b82f6" stroke-width="2"/>
+      <line x1="60" y1="25" x2="45" y2="35" stroke="#3b82f6" stroke-width="2"/>
+      <line x1="20" y1="55" x2="35" y2="45" stroke="#3b82f6" stroke-width="2"/>
+      <line x1="60" y1="55" x2="45" y2="45" stroke="#3b82f6" stroke-width="2"/>
+      <circle cx="20" cy="25" r="2" fill="#3b82f6"/>
+      <circle cx="60" cy="25" r="2" fill="#3b82f6"/>
+      <circle cx="20" cy="55" r="2" fill="#3b82f6"/>
+      <circle cx="60" cy="55" r="2" fill="#3b82f6"/>
+    </g>
+  </g>
+
+  <!-- Meeting Participants -->
+  <g transform="translate(150, 80)">
+    <!-- Person 1 -->
+    <circle cx="0" cy="0" r="15" fill="url(#meeting-gradient)" opacity="0.8"/>
+    <circle cx="0" cy="-5" r="5" fill="white"/>
+    <path d="M -8 8 Q 0 0, 8 8" stroke="white" stroke-width="2" fill="none"/>
+    
+    <!-- Person 2 -->
+    <circle cx="40" cy="0" r="15" fill="url(#meeting-gradient)" opacity="0.8"/>
+    <circle cx="40" cy="-5" r="5" fill="white"/>
+    <path d="M 32 8 Q 40 0, 48 8" stroke="white" stroke-width="2" fill="none"/>
+    
+    <!-- Person 3 -->
+    <circle cx="80" cy="0" r="15" fill="url(#meeting-gradient)" opacity="0.8"/>
+    <circle cx="80" cy="-5" r="5" fill="white"/>
+    <path d="M 72 8 Q 80 0, 88 8" stroke="white" stroke-width="2" fill="none"/>
+    
+    <!-- Speech bubbles -->
+    <ellipse cx="20" cy="-25" rx="25" ry="10" fill="white" opacity="0.9"/>
+    <text x="20" y="-22" text-anchor="middle" fill="#1e293b" font-size="8">Meeting Notes</text>
+    <ellipse cx="60" cy="-25" rx="20" ry="8" fill="white" opacity="0.9"/>
+    <text x="60" y="-22" text-anchor="middle" fill="#1e293b" font-size="7">Discussion</text>
+  </g>
+
+  <!-- AI Processing Arrow -->
+  <g transform="translate(200, 140)">
+    <path d="M 0 0 L 40 0 L 35 -5 M 40 0 L 35 5" stroke="#6366f1" stroke-width="3" fill="none" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <text x="20" y="-10" text-anchor="middle" fill="#6366f1" font-size="10" font-weight="bold">AI Processing</text>
+  </g>
+
+  <!-- Summary Document -->
+  <g transform="translate(280, 100)">
+    <rect x="0" y="0" width="60" height="80" rx="5" fill="white" opacity="0.9"/>
+    <rect x="5" y="10" width="50" height="3" fill="#10b981"/>
+    <rect x="5" y="18" width="45" height="2" fill="#64748b"/>
+    <rect x="5" y="24" width="40" height="2" fill="#64748b"/>
+    <rect x="5" y="30" width="48" height="2" fill="#64748b"/>
+    <rect x="5" y="36" width="35" height="2" fill="#64748b"/>
+    
+    <!-- Key Points -->
+    <circle cx="10" cy="45" r="2" fill="#ef4444"/>
+    <rect x="15" y="43" width="30" height="2" fill="#64748b"/>
+    <circle cx="10" cy="53" r="2" fill="#ef4444"/>
+    <rect x="15" y="51" width="25" height="2" fill="#64748b"/>
+    <circle cx="10" cy="61" r="2" fill="#ef4444"/>
+    <rect x="15" y="59" width="35" height="2" fill="#64748b"/>
+    
+    <text x="30" y="75" text-anchor="middle" fill="#10b981" font-size="8" font-weight="bold">Summary</text>
+  </g>
+
+  <!-- Email Icon -->
+  <g transform="translate(320, 200)">
+    <rect x="0" y="0" width="50" height="35" rx="5" fill="#3b82f6" opacity="0.8"/>
+    <path d="M 5 8 L 25 20 L 45 8" stroke="white" stroke-width="2" fill="none"/>
+    <text x="25" y="45" text-anchor="middle" fill="#3b82f6" font-size="8">Auto Email</text>
+    
+    <!-- Email sending animation -->
+    <g opacity="0.7">
+      <circle cx="60" cy="17" r="3" fill="#3b82f6">
+        <animate attributeName="cx" values="60;80;100" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0.5;0" dur="3s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Connecting Lines -->
+  <g stroke="#6366f1" stroke-width="2" fill="none" opacity="0.4">
+    <path d="M 150 120 L 200 140">
+      <animate attributeName="stroke-dasharray" values="0,100;50,50;100,0" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 280 140 L 320 180">
+      <animate attributeName="stroke-dasharray" values="0,80;40,40;80,0" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Title -->
+  <text x="200" y="30" text-anchor="middle" fill="white" font-family="Arial" font-size="18" font-weight="bold">
+    AI Meeting Summarizer
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="200" y="280" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="12">
+    Smart Meeting Notes → AI Summary → Auto Email
+  </text>
+</svg>

@@ -38,13 +38,20 @@ function About() {
         className="mt-4 dark:text-ctnSecondaryDark text-gray-300 text-[17px] w-full leading-[30px] flex flex-col justify-between gap-6"
       >
         <div>
-          Hello! I&apos;m Piyush Yadav, a passionate software developer  and AIML enthusiast from Kolkata, West Bengal. 
+          Hello! I&apos;m Piyush Yadav, a passionate full-stack software developer and AI enthusiast from Kolkata, West Bengal. 
           I&apos;m currently pursuing a Bachelor of Computer Science and Engineering at the Institute of Engineering and Management, with 
-          an expected graduation in 2027. My expertise includes programming in C++, Go, Python, Java, JavaScript, and working with 
-          various web technologies like ReactJS, ExpressJS, Flask, and Node.js. I have a strong interest in cybersecurity, 
-          including threat intelligence, incident response, and network security.
+          an expected graduation in 2027. I specialize in the MERN stack and Spring Boot with both SQL and NoSQL databases, 
+          bringing comprehensive expertise in modern web development.
           <br className="sm:block hidden" />
-          Let&apos;s collaborate to bring your ideas to life!
+          <br className="sm:block hidden" />
+          As an AI enthusiast, I&apos;ve built numerous AI-based applications leveraging cutting-edge technologies like LangChain, 
+          Gemini API, and machine learning frameworks. I follow Agile methodologies to deliver scalable, high-quality software solutions. 
+          My experience spans full-stack development, cybersecurity (threat intelligence, incident response, network security), 
+          and DevOps practices, gained through hands-on internships and real-world projects.
+          <br className="sm:block hidden" />
+          <br className="sm:block hidden" />
+          I&apos;m passionate about solving complex problems, building innovative solutions, and continuously learning new technologies. 
+          Let&apos;s collaborate to transform your ideas into powerful digital solutions!
         </div>
         <div className="w-fit break-words">
           <Link

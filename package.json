@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
-    "@react-three/drei": "^9.88.13",
-    "@react-three/fiber": "^8.15.11",
+    "@react-three/drei": "^9.111.0",
+    "@react-three/fiber": "^8.17.10",
     "@svgr/webpack": "^8.1.0",
     "@vercel/analytics": "^1.0.2",
     "dompurify": "^3.1.6",
@@ -32,11 +32,14 @@
     "react-parallax-tilt": "^1.7.154",
     "react-type-animation": "^3.1.0",
     "react-vertical-timeline-component": "^3.6.0",
-    "three": "^0.158.0"
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.29",
     "tailwindcss": "^3.3.3"
+  },
+  "overrides": {
+    "three-mesh-bvh": "^0.8.0"
   }
 }

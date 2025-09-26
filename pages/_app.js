@@ -1,4 +1,4 @@
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }) {
 
 	const title = "Portfolio | Piyush Yadav";
 	const description =
-		"Hello! I'm Piyush Yadav, a passionate software developer and cybersecurity enthusiast from Kolkata. Welcome to my portfolio";
+		"Hello! I'm Piyush Yadav, a passionate software developer and AI enthusiast from Kolkata. Welcome to my portfolio";
 	const avatar =
 		"https://res.cloudinary.com/dyle3hnpw/image/upload/v1696091629/portfolio/WhatsApp_Image_2023-09-30_at_10.02.55_PM_jk44v9.jpg";
 	const url = "https://piyush-yadav-portfolio.vercel.app/";

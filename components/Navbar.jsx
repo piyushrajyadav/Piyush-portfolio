@@ -28,7 +28,7 @@ function Navbar() {
 				<div className="sm:w-[500px] sm:h-[500px] xs:w-[400px] xs:h-[400px] w-[200px] h-[200px] dark:bg-[#2b2b42d2] bg-[#e0eaf0] flex justify-center items-center backdrop-blur-sm backdrop-filter bg-opacity-80 rounded-md modal">
 					<div className="relative w-[80%] h-[80%] rounded-md">
 						<Image
-							src="/assets/avatar.png"
+							src="/assets/avatar.jpg"
 							alt="avatar"
 							fill={true}
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
@@ -59,7 +59,7 @@ function Navbar() {
                         rounded-full relative cursor-pointer"
 						>
 							<Image
-								src="/assets/avatar.png"
+								src="/assets/avatar.jpg"
 								alt="avatar"
 								fill={true}
 								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"

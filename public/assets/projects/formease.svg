@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="formeaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0D1117"/>
+  <!-- Form Card -->
+  <rect x="80" y="40" width="240" height="200" rx="12" fill="#161B22" stroke="#30363d" stroke-width="2"/>
+  <!-- Form Fields -->
+  <rect x="100" y="70" width="200" height="35" rx="6" fill="#0D1117" stroke="#30363d" stroke-width="1"/>
+  <text x="115" y="92" font-family="Arial" font-size="12" fill="#8b949e">name@email.com</text>
+  <circle cx="280" cy="87" r="10" fill="#3fb950"/>
+  <text x="280" y="92" font-family="Arial" font-size="12" fill="white" text-anchor="middle">✓</text>
+  
+  <rect x="100" y="115" width="200" height="35" rx="6" fill="#0D1117" stroke="#30363d" stroke-width="1"/>
+  <text x="115" y="137" font-family="Arial" font-size="12" fill="#8b949e">••••••••</text>
+  <!-- Password Strength -->
+  <rect x="100" y="155" width="50" height="4" rx="2" fill="#3fb950"/>
+  <rect x="155" y="155" width="50" height="4" rx="2" fill="#3fb950"/>
+  <rect x="210" y="155" width="50" height="4" rx="2" fill="#3fb950"/>
+  <rect x="265" y="155" width="35" height="4" rx="2" fill="#30363d"/>
+  
+  <!-- Submit Button -->
+  <rect x="100" y="175" width="200" height="40" rx="8" fill="url(#formeaseGrad)"/>
+  <text x="200" y="200" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Submit</text>
+  <!-- Auto-save Icon -->
+  <circle cx="330" cy="60" r="15" fill="#161B22" stroke="url(#formeaseGrad)" stroke-width="2"/>
+  <text x="330" y="65" font-family="Arial" font-size="12" fill="#06b6d4" text-anchor="middle">💾</text>
+  <!-- NPM Badge -->
+  <rect x="140" y="250" width="120" height="30" rx="6" fill="#cb3837"/>
+  <text x="200" y="270" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">npm package</text>
+</svg>

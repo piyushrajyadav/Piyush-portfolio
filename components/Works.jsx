@@ -17,23 +17,42 @@ function ProjectCard({
   image,
   source_code_link,
   deployed_link,
+  featured,
 }) {
   const CHAR_LIMIT = 280;
 
   return (
     <motion.div
-      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+      variants={fadeIn("up", "spring", index * 0.15, 0.75)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.1 }}
+      className="h-full"
     >
       <Tilt
-        tiltMaxAngleX="10"
-        tiltMaxAngleY="10"
-        className="dark:bg-bgSecondaryDark bg-bgSecondaryLight p-5 rounded-2xl w-full h-full min-h-[590px] shadow-sm shadow-primary"
+        tiltMaxAngleX="8"
+        tiltMaxAngleY="8"
+        scale={1.02}
+        transitionSpeed={450}
+        className={`dark:bg-bgSecondaryDark bg-bgSecondaryLight p-5 rounded-2xl w-full h-full min-h-[590px] shadow-sm hover:shadow-lg transition-shadow duration-300 ${
+          featured
+            ? "shadow-primary ring-1 ring-primary/20"
+            : "shadow-primary/50"
+        }`}
       >
-        <div className="relative w-full h-[230px]">
-          <div className="w-full h-full object-cover rounded-2xl relative">
+        {featured && (
+          <div className="absolute top-3 left-3 z-10">
+            <span className="px-3 py-1 text-xs font-semibold bg-gradient-to-r from-primary to-tertiary text-white rounded-full shadow-lg">
+              ⭐ Featured
+            </span>
+          </div>
+        )}
+        <div className="relative w-full h-[230px] overflow-hidden rounded-2xl">
+          <motion.div 
+            className="w-full h-full object-cover relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
             <Image
               src={image}
               alt="project_image"
@@ -41,43 +60,48 @@ function ProjectCard({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
               className="object-cover"
             />
-          </div>
+          </motion.div>
 
           <div className="absolute inset-0 flex justify-start m-3 card-img_hover">
-            <div
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 10 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => window.open(deployed_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-primary/50 transition-shadow"
             >
               <RocketLogo className="w-1/2 h-1/2 mr-[2px] z-10" />
-            </div>
+            </motion.div>
           </div>
           <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <div
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: -10 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-white/30 transition-shadow"
             >
               <GithubLogo className="w-2/3 h-2/3 z-10" />
-            </div>
+            </motion.div>
           </div>
         </div>
 
         <div className="mt-5">
-          <h3 className="dark:text-ctnPrimaryDark text-ctnPrimaryLight font-bold text-[24px]">
+          <h3 className="dark:text-ctnPrimaryDark text-ctnPrimaryLight font-bold text-[22px] leading-tight hover:text-primary transition-colors duration-200">
             {name}
           </h3>
-          <p className="mt-2 dark:text-ctnSecondaryDark text-ctnSecondaryLight text-[14px]">
+          <p className="mt-3 dark:text-ctnSecondaryDark text-ctnSecondaryLight text-[14px] leading-relaxed">
             {truncateText(description, CHAR_LIMIT)}
           </p>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <p
+            <motion.span
               key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
+              whileHover={{ scale: 1.05, y: -2 }}
+              className={`text-[13px] font-medium ${tag.color} cursor-default`}
             >
               #{tag.name}
-            </p>
+            </motion.span>
           ))}
         </div>
       </Tilt>
@@ -106,10 +130,9 @@ function Works() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          These projects showcase my practical skills and experience, each with
-          descriptions and links to code repositories and live demos. They
-          demonstrate my ability to handle complex challenges, adapt to
-          different technologies, and oversee projects from start to finish.
+          From AI-powered tools to published npm packages, each project solves real problems. 
+          Featured projects have gained traction with international users and recognition on platforms 
+          like Product Hunt. Click the rocket to see live demos or GitHub icon for source code.
         </motion.p>
       </div>
 

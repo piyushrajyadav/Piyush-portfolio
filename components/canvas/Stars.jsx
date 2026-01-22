@@ -1,20 +1,27 @@
-import { useRef, Suspense } from "react";
+import { useRef, Suspense, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as THREE from "three";
 
 import CanvasLoader from "../Loader";
 
-function Stars(props) {
+function Stars({ isPaused, ...props }) {
 	const ref = useRef();
-	const sphere = new Float32Array(5000 * 3);
-	for (let i = 0; i < sphere.length; i++) {
-		sphere[i] = (Math.random() - 0.5) * 2.4;
-	}
+	
+	// Memoize the sphere positions - computed once, reused
+	const sphere = useMemo(() => {
+		const positions = new Float32Array(3000 * 3); // Reduced from 5000
+		for (let i = 0; i < positions.length; i++) {
+			positions[i] = (Math.random() - 0.5) * 2.4;
+		}
+		return positions;
+	}, []);
 
 	useFrame((state, delta) => {
-		ref.current.rotation.x -= delta / 10;
-		ref.current.rotation.y -= delta / 15;
+		if (!isPaused && ref.current) {
+			ref.current.rotation.x -= delta / 15; // Slower rotation
+			ref.current.rotation.y -= delta / 20;
+		}
 	});
 
 	return (
@@ -39,21 +46,48 @@ function Stars(props) {
 }
 
 function StarsCanvas() {
+	const [isVisible, setIsVisible] = useState(false);
+	const [hasLoaded, setHasLoaded] = useState(false);
+	const containerRef = useRef(null);
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setIsVisible(entry.isIntersecting);
+				if (entry.isIntersecting && !hasLoaded) {
+					setHasLoaded(true);
+				}
+			},
+			{ threshold: 0.05 }
+		);
+
+		if (containerRef.current) {
+			observer.observe(containerRef.current);
+		}
+
+		return () => observer.disconnect();
+	}, [hasLoaded]);
+
 	return (
-		<div className="w-full h-auto absolute inset-0 z-[-1]">
-			<Canvas
-				camera={{ position: [0, 0, 1] }}
-				dpr={[1, 2]}
-				gl={{
-					outputColorSpace: THREE.SRGBColorSpace,
-					alpha: false
-				}}
-			>
-				<Suspense fallback={<CanvasLoader />}>
-					<Stars />
-				</Suspense>
-				<Preload all />
-			</Canvas>
+		<div ref={containerRef} className="w-full h-auto absolute inset-0 z-[-1]">
+			{hasLoaded && (
+				<Canvas
+					camera={{ position: [0, 0, 1] }}
+					dpr={1} // Lower DPR for performance
+					frameloop={isVisible ? "always" : "never"} // Stop rendering when not visible
+					gl={{
+						outputColorSpace: THREE.SRGBColorSpace,
+						alpha: false,
+						antialias: false, // Disable for performance
+						powerPreference: "high-performance",
+					}}
+				>
+					<Suspense fallback={<CanvasLoader />}>
+						<Stars isPaused={!isVisible} />
+					</Suspense>
+					<Preload all />
+				</Canvas>
+			)}
 		</div>
 	);
 }

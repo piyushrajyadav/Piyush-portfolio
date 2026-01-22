@@ -6,19 +6,22 @@ import * as THREE from "three";
 import CanvasLoader from "../Loader";
 import EarthModel from "./models/EarthModel";
 
-function Earth({ isMobile }) {
+function Earth({ isMobile, isPaused }) {
   const { nodes, materials } = useGLTF("models/planet/scene.gltf");
   const earthRef = useRef();
 
   useFrame(() => {
-    earthRef.current.rotation.y += 0.01;
+    if (!isPaused && earthRef.current) {
+      earthRef.current.rotation.y += 0.005; // Slower rotation
+    }
   });
 
   return (
     <>
       {!isMobile && (
         <OrbitControls
-          autoRotate
+          autoRotate={!isPaused}
+          autoRotateSpeed={0.5}
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
@@ -42,17 +45,21 @@ function Earth({ isMobile }) {
   );
 }
 
-function EarthCanvas({ isMobile }) {
+function EarthCanvas({ isMobile, isPaused = false }) {
   return (
     <Canvas
-      dpr={[1, 2]}
+      dpr={1} // Lower DPR for performance
+      frameloop={isPaused ? "never" : "always"}
       gl={{
         outputColorSpace: THREE.SRGBColorSpace,
         alpha: true,
+        antialias: false,
+        powerPreference: "high-performance",
       }}
       className="cursor-pointer"
+      style={{ width: "100%", height: "100%", minHeight: "550px" }}
     >
-      <Earth isMobile={isMobile} />
+      <Earth isMobile={isMobile} isPaused={isPaused} />
     </Canvas>
   );
 }

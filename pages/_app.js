@@ -2,17 +2,27 @@ import { Analytics } from '@vercel/analytics/next';
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { Poppins } from "next/font/google";
 
 import "@/styles/globals.css";
 
 import { PreLoader } from "@/components/Loader";
 
+// Load Poppins font through Next.js for better performance
+const poppins = Poppins({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: "swap",
+	variable: "--font-poppins",
+});
+
 export default function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
-		setTimeout(() => {
+		const timer = setTimeout(() => {
 			setLoading(false);
-		}, 3000);
+		}, 2000); // Reduced from 3000ms to 2000ms
+		return () => clearTimeout(timer);
 	}, []);
 
 	useEffect(() => {
@@ -58,19 +68,19 @@ export default function App({ Component, pageProps }) {
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
-					href="/assets/favicon.jpg"
+					href="/assets/piyush .jpeg"
 				/>
 				<link
 					rel="icon"
-					type="image/jpg"
+					type="image/jpeg"
 					sizes="32x32"
-					href="/assets/favicon.jpg"
+					href="/assets/piyush .jpeg"
 				/>
 				<link
 					rel="icon"
-					type="image/jpg"
+					type="image/jpeg"
 					sizes="16x16"
-					href="/assets/favicon.jpg"
+					href="/assets/piyush .jpeg"
 				/>
 				<link
 					rel="manifest"
@@ -79,7 +89,9 @@ export default function App({ Component, pageProps }) {
 			</Head>
 
 			<ThemeProvider attribute="class" defaultTheme="dark">
-				<Component {...pageProps} loading={loading} />
+				<main className={`${poppins.variable} font-sans`}>
+					<Component {...pageProps} loading={loading} />
+				</main>
                 <Analytics />
 				{loading && <PreLoader />}
 			</ThemeProvider>

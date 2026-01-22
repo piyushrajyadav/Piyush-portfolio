@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="flowmoraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0D1117"/>
+  <!-- Browser Window -->
+  <rect x="40" y="40" width="320" height="220" rx="10" fill="#161B22" stroke="#30363d" stroke-width="2"/>
+  <!-- Browser Top Bar -->
+  <rect x="40" y="40" width="320" height="35" rx="10" fill="#21262d"/>
+  <circle cx="60" cy="57" r="6" fill="#f85149"/>
+  <circle cx="80" cy="57" r="6" fill="#d29922"/>
+  <circle cx="100" cy="57" r="6" fill="#3fb950"/>
+  <!-- URL Bar -->
+  <rect x="120" y="48" width="180" height="18" rx="4" fill="#0D1117"/>
+  <!-- Knowledge Mode Icon -->
+  <rect x="60" y="95" width="280" height="145" rx="5" fill="#0D1117"/>
+  <!-- Brain Icon -->
+  <circle cx="200" cy="150" r="40" fill="url(#flowmoraGrad)" opacity="0.2"/>
+  <text x="200" y="160" font-family="Arial" font-size="40" fill="#667eea" text-anchor="middle">🧠</text>
+  <!-- Text Lines -->
+  <rect x="80" y="200" width="100" height="8" rx="2" fill="#3fb950" opacity="0.7"/>
+  <rect x="190" y="200" width="130" height="8" rx="2" fill="#30363d"/>
+  <rect x="80" y="215" width="240" height="6" rx="2" fill="#30363d"/>
+  <!-- Flowmora Text -->
+  <text x="200" y="280" font-family="Arial" font-size="18" font-weight="bold" fill="url(#flowmoraGrad)" text-anchor="middle">Flowmora Browser</text>
+</svg>

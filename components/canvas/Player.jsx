@@ -13,7 +13,7 @@ import { Canvas } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import PlayerModel from "./models/PlayerModel";
 
-function Player({ isMobile }) {
+function Player({ isMobile, isPaused }) {
   const group = useRef();
   const [animationsLoaded, setAnimationsLoaded] = useState(false);
 
@@ -31,16 +31,24 @@ function Player({ isMobile }) {
     if (waveAnimation && actions["wave-animation"]) {
       setAnimationsLoaded(true);
     }
-    if (animationsLoaded) {
+    if (animationsLoaded && !isPaused) {
       actions["wave-animation"].reset().play();
     }
-  }, [animationsLoaded, waveAnimation, actions]);
-
-  setTimeout(() => {
-    if (waveAnimation && actions["wave-animation"]) {
-      setAnimationsLoaded(true);
+    if (isPaused && actions["wave-animation"]) {
+      actions["wave-animation"].paused = true;
+    } else if (!isPaused && actions["wave-animation"]) {
+      actions["wave-animation"].paused = false;
     }
-  }, 2000);
+  }, [animationsLoaded, waveAnimation, actions, isPaused]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (waveAnimation && actions["wave-animation"]) {
+        setAnimationsLoaded(true);
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [waveAnimation, actions]);
 
   return (
     <>
@@ -83,16 +91,20 @@ function Player({ isMobile }) {
   );
 }
 
-function PlayerCanvas({ isMobile }) {
+function PlayerCanvas({ isMobile, isPaused = false }) {
   return (
     <Canvas
-      dpr={[1, 2]}
+      dpr={1}
+      frameloop={isPaused ? "never" : "always"}
       gl={{
         outputColorSpace: THREE.SRGBColorSpace,
         alpha: true,
+        antialias: false,
+        powerPreference: "high-performance",
       }}
+      style={{ width: "100%", height: "100%", minHeight: "440px" }}
     >
-      <Player isMobile={isMobile} />
+      <Player isMobile={isMobile} isPaused={isPaused} />
     </Canvas>
   );
 }

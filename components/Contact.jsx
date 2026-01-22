@@ -43,11 +43,10 @@ function Contact() {
         process.env.NEXT_PUBLIC_SERVICE_ID,
         process.env.NEXT_PUBLIC_TEMPLATE_ID,
         {
-          from_name: DOMPurify.sanitize(form.name),
-          to_name: "Piyush Yadav",
-          from_email: DOMPurify.sanitize(form.email),
-          to_email: "piyushyadavrajyadav@gmail.com",
+          name: DOMPurify.sanitize(form.name),
+          email: DOMPurify.sanitize(form.email),
           message: DOMPurify.sanitize(form.message),
+          time: new Date().toLocaleString(),
         },
         process.env.NEXT_PUBLIC_EMAILJS_KEY
       )

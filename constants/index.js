@@ -274,113 +274,41 @@ const testimonials = [
   },
 ];
 
+const projectCategories = [
+  { id: "all", label: "All Projects" },
+  { id: "systems", label: "Systems Engineering" },
+  { id: "ai", label: "Artificial Intelligence" },
+  { id: "fullstack", label: "Web Applications" },
+  { id: "packages", label: "Packages & Libraries" },
+];
+
 const projects = [
   {
-    name: "CodeTrail - AI Career Guidance Platform",
+    name: "SecureFlow AI - Security Middleware for Multi-Agent Systems",
     description:
-      "Your personal AI career coach that analyzes your resume and GitHub profile to uncover skill gaps, recommend perfect roles, suggest impactful projects, and build a custom learning roadmap. Unlike generic career advice, CodeTrail uses generative AI to provide hyper-personalized guidance tailored to your unique developer journey.",
+      "Lightning-fast security middleware layer protecting Multi-Agent Systems (LangChain, LangGraph) from Inter-Agent Trust Exploitation. Acts as a real-time firewall intercepting agent communication to detect and block prompt injections, privilege escalations, jailbreaks, and data exfiltration before execution. Used by 100+ developers in just 2 days. Published on PyPI as installable package with production-ready threat detection.",
     tags: [
       {
-        name: "next.js",
+        name: "python",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "pypi",
         color: "green-text-gradient",
       },
       {
-        name: "genai",
+        name: "security",
         color: "pink-text-gradient",
       },
       {
-        name: "career-guidance",
+        name: "middleware",
         color: "orange-text-gradient",
       },
     ],
-    image: "/assets/projects/codetrail.svg",
-    source_code_link: "https://github.com/piyushrajyadav/CodeTrail",
-    deployed_link: "https://code-trail-dusky.vercel.app/",
-    featured: true,
-  },
-  {
-    name: "DropFade - Secure Ephemeral File Sharing",
-    description:
-      "Featured in Top 20 on Product Hunt! A privacy-first file sharing platform where files self-destruct after access. Upload any file, get a unique code, share it - the file vanishes permanently from cloud storage once downloaded. Built to solve the frustrating WhatsApp login hassle in college labs. No accounts, no traces, just secure instant sharing with international user base.",
-    tags: [
-      {
-        name: "next.js",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "shadcn",
-        color: "green-text-gradient",
-      },
-      {
-        name: "redis",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "cloud-storage",
-        color: "orange-text-gradient",
-      },
-    ],
-    image: "/assets/projects/dropfade.svg",
-    source_code_link: "https://github.com/piyushrajyadav/dropfade",
-    deployed_link: "https://dropfade.piyushyadav.me/",
-    featured: true,
-  },
-  {
-    name: "Flowmora - Knowledge-Focused Browser",
-    description:
-      "Not just another browser - it's a learning companion. Flowmora features built-in Knowledge Mode that auto-captures important content, one-click page summarization extracting key points and definitions, and exports your browsing sessions as a beautifully formatted knowledge book. Privacy-first with zero tracking, built on Electron with modern UI/UX.",
-    tags: [
-      {
-        name: "electron",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "chromium",
-        color: "green-text-gradient",
-      },
-      {
-        name: "indexeddb",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "desktop-app",
-        color: "orange-text-gradient",
-      },
-    ],
-    image: "/assets/projects/flowmora.svg",
-    source_code_link: "https://github.com/piyushrajyadav/Flowmora-Browser",
-    deployed_link: "https://github.com/piyushrajyadav/Flowmora-Browser/releases",
-    featured: true,
-  },
-  {
-    name: "CodeChronicle - Git Platform with Analytics",
-    description:
-      "A GitHub-like code hosting platform built from scratch with a custom Git engine. What makes it unique? Queryable version history and code evolution analytics - find most changed files, detect risky hotspots, track author contributions, and visualize commit patterns. Features custom SHA-256 based storage, branch management, and a full REST API. Final year project showcasing deep VCS internals.",
-    tags: [
-      {
-        name: "next.js",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "express.js",
-        color: "green-text-gradient",
-      },
-      {
-        name: "custom-git",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "analytics",
-        color: "orange-text-gradient",
-      },
-    ],
-    image: "/assets/projects/codechroncile.svg",
-    source_code_link: "https://github.com/piyushrajyadav/CodeChronicle",
-    deployed_link: "https://github.com/piyushrajyadav/CodeChronicle",
+    image: "/assets/projects/secureflow.svg",
+    source_code_link: "https://github.com/piyushrajyadav/Secure-Flow",
+    deployed_link: "https://pypi.org/project/secureflow-ai/",
+    category: "packages",
     featured: true,
   },
   {
@@ -408,29 +336,396 @@ const projects = [
     image: "/assets/projects/formease.svg",
     source_code_link: "https://github.com/piyushrajyadav/formease",
     deployed_link: "https://www.npmjs.com/package/@piyushrajyadav/formease",
+    category: "packages",
     featured: true,
   },
   {
-    name: "Geeta GPT - Spiritual AI Companion",
+    name: "Awesome AI Dev Prompts - Production Prompt Library",
     description:
-      "Seek wisdom from the Bhagavad Gita through conversations with Lord Krishna himself. This AI chatbot, powered by Gemini and LangChain, responds to life's questions with relevant shlokas and timeless guidance. Whether facing career dilemmas, relationship struggles, or existential questions - receive personalized spiritual insights in Krishna's authentic voice.",
+      "The ultimate prompt library for AI coding tools — 75+ production-grade system prompts to supercharge development workflows. One prompt transforms your AI assistant into a top 1% specialist engineer instantly. Curated collection covering architecture, debugging, code review, testing, and more. Open-source resource with growing GitHub stars used by developers worldwide.",
+    tags: [
+      {
+        name: "prompts",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ai-tools",
+        color: "green-text-gradient",
+      },
+      {
+        name: "productivity",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "open-source",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/awesome-prompts.svg",
+    source_code_link: "https://github.com/piyushrajyadav/awesome-ai-dev-prompts",
+    deployed_link: "https://github.com/piyushrajyadav/awesome-ai-dev-prompts",
+    category: "packages",
+    featured: false,
+  },
+  {
+    name: "Flowmora - Knowledge-Focused Browser",
+    description:
+      "Not just another browser - it's a learning companion. Flowmora features built-in Knowledge Mode that auto-captures important content, one-click page summarization extracting key points and definitions, and exports your browsing sessions as a beautifully formatted knowledge book. Privacy-first with zero tracking, built on Electron with modern UI/UX.",
+    tags: [
+      {
+        name: "electron",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "chromium",
+        color: "green-text-gradient",
+      },
+      {
+        name: "indexeddb",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "desktop-app",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/flowmora.svg",
+    source_code_link: "https://github.com/piyushrajyadav/Flowmora-Browser",
+    deployed_link: "https://github.com/piyushrajyadav/Flowmora-Browser/releases",
+    category: "systems",
+    featured: true,
+  },
+  {
+    name: "K8s Store Platform - Kubernetes Provisioning Engine",
+    description:
+      "Enterprise-grade platform for provisioning e-commerce stores on Kubernetes clusters via dashboard. Complete automation pipeline from user request to Helm deployment. Features React frontend, Node.js/Express backend orchestrating K8s resources, and reusable Helm charts for WooCommerce + MySQL. Demonstrates production-level DevOps and cloud-native architecture.",
+    tags: [
+      {
+        name: "kubernetes",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "helm",
+        color: "green-text-gradient",
+      },
+      {
+        name: "react",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "devops",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/k8s-store.svg",
+    source_code_link: "https://github.com/piyushrajyadav/k8s-store-platform",
+    deployed_link: "",
+    category: "systems",
+    featured: true,
+  },
+  {
+    name: "CodeChronicle - Git Platform with Analytics",
+    description:
+      "GitHub-like code hosting platform built from scratch with custom Git engine and queryable version history. Features content-addressable storage using SHA-256, complete branch management, and unique code evolution analytics dashboard. Track most changed files, detect risky hotspots, visualize commit patterns, and analyze author contributions. Final year project showcasing deep VCS internals.",
     tags: [
       {
         name: "next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "langchain",
+        name: "express.js",
         color: "green-text-gradient",
       },
       {
-        name: "gemini",
+        name: "custom-git",
         color: "pink-text-gradient",
+      },
+      {
+        name: "analytics",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/codechroncile.svg",
+    source_code_link: "https://github.com/piyushrajyadav/CodeChronicle",
+    deployed_link: "",
+    category: "systems",
+    featured: true,
+  },
+  {
+    name: "CodeTrail - AI Career Coach Platform",
+    description:
+      "Intelligent career guidance platform that analyzes your resume and GitHub profile using generative AI to uncover skill gaps, recommend perfect roles, suggest impactful projects, and build custom learning roadmaps. Unlike generic career advice, leverages LLM-powered analysis for hyper-personalized guidance tailored to your unique developer journey. Built with Next.js, Supabase for authentication and data persistence, and AI-driven recommendation engine.",
+    tags: [
+      {
+        name: "genai",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "next.js",
+        color: "green-text-gradient",
+      },
+      {
+        name: "supabase",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "career-ai",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/codetrail.svg",
+    source_code_link: "https://github.com/piyushrajyadav/CodeTrail",
+    deployed_link: "https://code-trail-dusky.vercel.app/",
+    category: "ai",
+    featured: true,
+  },
+  {
+    name: "DropFade - Secure Ephemeral File Sharing",
+    description:
+      "Featured in Top 20 on Product Hunt! A privacy-first file sharing platform where files self-destruct after access. Upload any file, get a unique code, share it - the file vanishes permanently from cloud storage once downloaded. Built to solve the frustrating WhatsApp login hassle in college labs. No accounts, no traces, just secure instant sharing with international user base.",
+    tags: [
+      {
+        name: "next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "shadcn",
+        color: "green-text-gradient",
+      },
+      {
+        name: "redis",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "cloud-storage",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/dropfade.svg",
+    source_code_link: "https://github.com/piyushrajyadav/dropfade",
+    deployed_link: "https://dropfade.piyushyadav.me/",
+    category: "fullstack",
+    featured: true,
+  },
+  {
+    name: "Yantrika AI - Multi-Agent Development Platform",
+    description:
+      "Premium multi-agent orchestration platform that simulates a complete AI software development team. Enter a project idea and watch specialized AI agents collaborate to generate PRD, system architecture, production-ready code, and test suites. Built with CrewAI for agent coordination, Groq API (Llama 3.3 70B) for ultra-fast inference, Next.js 14, and modern glassmorphism UI. GitHub starred project showcasing advanced agentic AI workflows.",
+    tags: [
+      {
+        name: "crewai",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "multi-agent",
+        color: "green-text-gradient",
+      },
+      {
+        name: "groq",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "next.js",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/yantrika.svg",
+    source_code_link: "https://github.com/piyushrajyadav/Yantrika-AI",
+    deployed_link: "",
+    category: "ai",
+    featured: true,
+  },
+  {
+    name: "Geeta GPT - Spiritual AI Companion",
+    description:
+      "Conversational AI chatbot that channels wisdom from the Bhagavad Gita through Lord Krishna's voice. Powered by Google Gemini and LangChain for intelligent context-aware responses with relevant shlokas and timeless guidance. Whether facing career dilemmas, relationship struggles, or existential questions - receive personalized spiritual insights. Built with Next.js, RAG architecture, and vector embeddings for accurate scripture retrieval.",
+    tags: [
+      {
+        name: "langchain",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "gemini",
+        color: "green-text-gradient",
+      },
+      {
+        name: "rag",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "next.js",
+        color: "orange-text-gradient",
       },
     ],
     image: "/assets/projects/geetagpt.svg",
     source_code_link: "https://github.com/piyushrajyadav/geeta-gpt",
     deployed_link: "https://geeta-gpt.vercel.app/",
+    category: "ai",
+  },
+  {
+    name: "PassiveCaptcha - ML-Powered Human Verification",
+    description:
+      "Frictionless, machine-learning powered human verification system eliminating traditional CAPTCHA friction. Passively collects DOM telemetry and behavioral biometrics (mouse linearity, scroll jerk, keystroke rhythms) without tracking PII. Multi-model ML ensemble with XGBoost, Random Forest, and LSTM for real-time bot detection. Features explainable AI with SHAP values, enterprise analytics dashboard, stateless JWT sessions, and Redis-backed rate limiting. Zero friction for humans, impenetrable for bots.",
+    tags: [
+      {
+        name: "machine-learning",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "lstm",
+        color: "green-text-gradient",
+      },
+      {
+        name: "xgboost",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "security",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/passive-captcha.svg",
+    source_code_link: "https://github.com/piyushrajyadav/PassiveCaptcha",
+    deployed_link: "",
+    category: "ai",
+    featured: true,
+  },
+  {
+    name: "HelioCast - Solar Power Forecasting Platform",
+    description:
+      "Deep learning-powered solar energy forecasting system using Bidirectional LSTM Neural Networks with 12 temporal and weather features. Provides real-time power output predictions and comprehensive 24-hour hourly forecasts. Built with TensorFlow for ML inference, Flask RESTful API with smart defaults and MinMaxScaler normalization, React + TypeScript frontend with WebGL shader backgrounds (fractal mountains, animated GLSL hills), interactive Recharts visualizations, and modern Tailwind CSS + shadcn/ui design. Production-ready with CORS support.",
+    tags: [
+      {
+        name: "lstm",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "tensorflow",
+        color: "green-text-gradient",
+      },
+      {
+        name: "react",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "webgl",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/heliocast.svg",
+    source_code_link: "https://github.com/piyushrajyadav/heliocast",
+    deployed_link: "",
+    category: "ai",
+    featured: false,
+  },
+  {
+    name: "Code Explainer - Intelligent Code Analysis Tool",
+    description:
+      "Intelligent code analysis tool helping developers understand code functionality through detailed explanations. Dual analysis approach: rule-based pattern recognition through syntax parsing for fast structural analysis, and NLP-based AI explanations using transformer models (CodeBERT, CodeGen, Gemini) for semantic understanding. Multi-language support (JavaScript, Python, Java, C++), modern UI with CodeMirror syntax highlighting, real-time analysis, and detailed insights on function signatures, class hierarchies, and code complexity metrics.",
+    tags: [
+      {
+        name: "nlp",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "transformers",
+        color: "green-text-gradient",
+      },
+      {
+        name: "codebert",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "gemini",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/code-explainer.svg",
+    source_code_link: "https://github.com/piyushrajyadav/code-explainer",
+    deployed_link: "",
+    category: "ai",
+  },
+  {
+    name: "AI Meeting Summarizer - Smart Note Taker",
+    description:
+      "Never miss action items again. AI-powered meeting assistant that transforms raw meeting notes into structured summaries with key insights, decisions, and next steps extracted automatically. Features intelligent NLP for topic extraction, action item identification, participant tracking, and automated email distribution to all attendees. Built with Next.js, Google Gemini for text analysis, and NodeMailer for email integration. Perfect for remote teams and productivity optimization.",
+    tags: [
+      {
+        name: "genai",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "nlp",
+        color: "green-text-gradient",
+      },
+      {
+        name: "next.js",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "email-api",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/ai-meeting-summarizer.svg",
+    source_code_link: "https://github.com/piyushrajyadav/AI-Meeting-summarizer",
+    deployed_link: "https://meeting-notes-theta.vercel.app/",
+    category: "ai",
+  },
+  {
+    name: "Restro Voice Booking - Conversational AI Assistant",
+    description:
+      "Voice-enabled AI booking assistant for restaurant table reservations with natural language understanding. Supports bilingual conversations in English and Hindi with seamless code-switching. Powered by Google Gemini for NLP, Web Speech API for voice interaction, real-time weather integration for intelligent seating suggestions, calendar-based availability system, automated email confirmations via NodeMailer, and admin dashboard with booking analytics. Gracefully handles off-topic queries.",
+    tags: [
+      {
+        name: "voice-ai",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "gemini",
+        color: "green-text-gradient",
+      },
+      {
+        name: "nlp",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "mern",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/restro-voice.svg",
+    source_code_link: "https://github.com/piyushrajyadav/Restro-voice-booking",
+    deployed_link: "",
+    category: "ai",
+    featured: false,
+  },
+  {
+    name: "Smart Legal Assistant - AI Contract Generator",
+    description:
+      "AI-powered legal document assistant for drafting, reviewing, and managing contracts with precision. Powered by LangChain and Google Gemini for intelligent contract generation, risk clause detection, and legal jargon simplification. Features contract templates, clause analysis, compliance checking, and document management. Built with Python backend and Next.js frontend. Perfect for startups, freelancers, and small businesses needing lawyer-quality assistance.",
+    tags: [
+      {
+        name: "langchain",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "gemini",
+        color: "green-text-gradient",
+      },
+      {
+        name: "python",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "next.js",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: "/assets/projects/legal-assistant.svg",
+    source_code_link: "https://github.com/piyushrajyadav/DigiLex-ai",
+    deployed_link: "",
+    category: "ai",
   },
   {
     name: "TypePulse - Master Your Typing Speed",
@@ -453,58 +748,7 @@ const projects = [
     image: "/assets/projects/typepulse.svg",
     source_code_link: "https://github.com/piyushrajyadav/TypePulse",
     deployed_link: "https://typepulse.vercel.app/",
-  },
-  {
-    name: "AI Meeting Summarizer",
-    description:
-      "Never miss action items again. Paste your meeting notes and get AI-generated summaries with key insights, decisions, and next steps extracted automatically. Built-in email integration sends summaries directly to all participants. Perfect for remote teams who want to spend less time on documentation and more time on execution.",
-    tags: [
-      {
-        name: "next.js",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "genai",
-        color: "green-text-gradient",
-      },
-      {
-        name: "email-api",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "nlp",
-        color: "orange-text-gradient",
-      },
-    ],
-    image: "/assets/projects/ai-meeting-summarizer.svg",
-    source_code_link: "https://github.com/piyushrajyadav/AI-Meeting-summarizer",
-    deployed_link: "https://meeting-notes-theta.vercel.app/",
-  },
-  {
-    name: "Smart Legal Assistant - AI Contract Generator",
-    description:
-      "Draft, review, and manage legal contracts with AI precision. Powered by LangChain and Gemini, this Web3-ready tool generates compliant contracts, spots risky clauses, and simplifies legal jargon. Whether you're a startup founder or freelancer, get lawyer-quality document assistance without the billable hours.",
-    tags: [
-      {
-        name: "python",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "next.js",
-        color: "green-text-gradient",
-      },
-      {
-        name: "langchain",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "gemini",
-        color: "orange-text-gradient",
-      },
-    ],
-    image: "/assets/projects/legal-assistant.svg",
-    source_code_link: "https://github.com/piyushrajyadav/DigiLex-ai",
-    deployed_link: "https://github.com/piyushrajyadav",
+    category: "fullstack",
   },
 ];
 
@@ -553,6 +797,7 @@ export {
   experiences,
   testimonials,
   projects,
+  projectCategories,
   socials,
   heroTexts,
 };

@@ -1,0 +1,42 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="solarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.6" />
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0f172a"/>
+  
+  <!-- Sun -->
+  <circle cx="200" cy="100" r="40" fill="url(#sunGrad)"/>
+  <circle cx="200" cy="100" r="30" fill="#fbbf24"/>
+  
+  <!-- Sun rays -->
+  <line x1="200" y1="40" x2="200" y2="20" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="240" y1="60" x2="255" y2="45" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="260" y1="100" x2="280" y2="100" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="240" y1="140" x2="255" y2="155" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="160" y1="60" x2="145" y2="45" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="120" y1="100" x2="100" y2="100" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="160" y1="140" x2="145" y2="155" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Solar panel -->
+  <rect x="140" y="180" width="120" height="50" rx="3" fill="none" stroke="url(#solarGrad)" stroke-width="3"/>
+  <line x1="160" y1="180" x2="160" y2="230" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="180" y1="180" x2="180" y2="230" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="200" y1="180" x2="200" y2="230" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="220" y1="180" x2="220" y2="230" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="240" y1="180" x2="240" y2="230" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Energy waves -->
+  <path d="M200 150 Q190 165 200 180" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+  <path d="M210 150 Q220 165 210 180" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+  <path d="M190 150 Q180 165 190 180" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+  
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+        fill="#f59e0b" text-anchor="middle">HelioCast</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="secureGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0f172a"/>
+  
+  <!-- Shield Icon -->
+  <path d="M200 60 L240 80 L240 140 Q240 180 200 200 Q160 180 160 140 L160 80 Z" 
+        fill="url(#secureGrad)" opacity="0.2"/>
+  <path d="M200 70 L230 85 L230 135 Q230 165 200 180 Q170 165 170 135 L170 85 Z" 
+        fill="none" stroke="url(#secureGrad)" stroke-width="3"/>
+  
+  <!-- Lock -->
+  <rect x="190" y="115" width="20" height="25" rx="2" fill="url(#secureGrad)"/>
+  <path d="M195 115 L195 105 Q195 95 200 95 Q205 95 205 105 L205 115" 
+        fill="none" stroke="url(#secureGrad)" stroke-width="2"/>
+  
+  <!-- Network nodes -->
+  <circle cx="120" cy="180" r="8" fill="#6366f1" opacity="0.6"/>
+  <circle cx="280" cy="180" r="8" fill="#6366f1" opacity="0.6"/>
+  <circle cx="200" cy="240" r="8" fill="#6366f1" opacity="0.6"/>
+  
+  <!-- Connecting lines -->
+  <line x1="128" y1="180" x2="192" y2="200" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+  <line x1="272" y1="180" x2="208" y2="200" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+  
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+        fill="#6366f1" text-anchor="middle">SecureFlow AI</text>
+</svg>

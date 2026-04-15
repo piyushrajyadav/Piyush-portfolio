@@ -1,0 +1,33 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="voiceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0f172a"/>
+  
+  <!-- Microphone -->
+  <rect x="180" y="80" width="40" height="60" rx="20" fill="url(#voiceGrad)" opacity="0.3"/>
+  <rect x="185" y="85" width="30" height="50" rx="15" fill="none" stroke="url(#voiceGrad)" stroke-width="3"/>
+  <path d="M170 125 Q170 155 200 155 Q230 155 230 125" fill="none" stroke="url(#voiceGrad)" stroke-width="3"/>
+  <line x1="200" y1="155" x2="200" y2="175" stroke="url(#voiceGrad)" stroke-width="3"/>
+  <line x1="180" y1="175" x2="220" y2="175" stroke="url(#voiceGrad)" stroke-width="3"/>
+  
+  <!-- Sound waves -->
+  <path d="M140 100 Q135 110 140 120" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
+  <path d="M260 100 Q265 110 260 120" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
+  <path d="M120 95 Q110 110 120 125" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.4"/>
+  <path d="M280 95 Q290 110 280 125" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Restaurant table -->
+  <ellipse cx="200" cy="220" rx="60" ry="15" fill="#10b981" opacity="0.3"/>
+  <rect x="195" y="220" width="10" height="30" fill="#10b981" opacity="0.5"/>
+  
+  <!-- Plates -->
+  <circle cx="180" cy="215" r="8" fill="none" stroke="#06b6d4" stroke-width="2"/>
+  <circle cx="220" cy="215" r="8" fill="none" stroke="#06b6d4" stroke-width="2"/>
+  
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="20" font-weight="bold" 
+        fill="#10b981" text-anchor="middle">Restro Voice AI</text>
+</svg>

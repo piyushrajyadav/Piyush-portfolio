@@ -1,0 +1,36 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="captchaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0f172a"/>
+  
+  <!-- Shield with checkmark -->
+  <path d="M200 50 L250 75 L250 145 Q250 185 200 210 Q150 185 150 145 L150 75 Z" 
+        fill="url(#captchaGrad)" opacity="0.2"/>
+  <path d="M200 60 L240 80 L240 140 Q240 170 200 190 Q160 170 160 140 L160 80 Z" 
+        fill="none" stroke="url(#captchaGrad)" stroke-width="3"/>
+  
+  <!-- Checkmark -->
+  <path d="M180 125 L195 140 L220 105" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Mouse cursor trail -->
+  <circle cx="100" cy="220" r="3" fill="#3b82f6" opacity="0.3"/>
+  <circle cx="120" cy="215" r="3" fill="#3b82f6" opacity="0.5"/>
+  <circle cx="140" cy="225" r="3" fill="#3b82f6" opacity="0.7"/>
+  <circle cx="160" cy="220" r="4" fill="#3b82f6" opacity="0.9"/>
+  
+  <!-- Brain/ML icon -->
+  <circle cx="280" cy="220" r="20" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
+  <path d="M270 220 L280 210 L290 220 L280 230 Z" fill="#10b981" opacity="0.6"/>
+  
+  <!-- Behavioral signals -->
+  <line x1="100" y1="240" x2="120" y2="240" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+  <line x1="130" y1="240" x2="160" y2="240" stroke="#10b981" stroke-width="2" opacity="0.4"/>
+  <line x1="250" y1="240" x2="280" y2="240" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+  
+  <text x="200" y="275" font-family="Arial, sans-serif" font-size="22" font-weight="bold" 
+        fill="#10b981" text-anchor="middle">PassiveCaptcha</text>
+</svg>

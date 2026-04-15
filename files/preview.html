@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piyush 3D Avatar Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    color: #c0c0d0;
+  }
+  #canvas-container {
+    width: 480px;
+    height: 560px;
+    position: relative;
+    cursor: grab;
+  }
+  #canvas-container:active { cursor: grabbing; }
+  canvas { display: block; }
+  .label {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: rgba(150,150,200,0.5);
+    letter-spacing: 0.08em;
+    pointer-events: none;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    color: #e0e0f0;
+  }
+  p {
+    font-size: 13px;
+    color: #7070a0;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+  .badge {
+    margin-top: 16px;
+    padding: 6px 16px;
+    border: 1px solid #3050a0;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #6090d0;
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+<h1>PIYUSH YADAV</h1>
+<p>Software Engineer · IEM Kolkata · 3rd Year CSE</p>
+
+<div id="canvas-container">
+  <div class="label">drag to rotate · mouse to look</div>
+</div>
+
+<div class="badge">3D Avatar · Three.js · React Three Fiber</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const C = {
+  skin:       0xC68642,
+  skinDark:   0xA0522D,
+  hair:       0x1a1008,
+  beard:      0x2a1a0a,
+  blazer:     0x7a6a5a,
+  blazerDark: 0x5a4d40,
+  shirt:      0xa8c8e8,
+  tie:        0xb89060,
+  tieDot:     0xd4a870,
+  pants:      0xc8c8b8,
+  glasses:    0x1a1a1a,
+  lens:       0x1a2a3a,
+  belt:       0x2a1a0a,
+  shoes:      0x2a1a0a,
+  pin:        0xe05030,
+  white:      0xf8f8f0,
+};
+
+const container = document.getElementById('canvas-container');
+const W = container.clientWidth, H = container.clientHeight;
+
+// Renderer
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+container.insertBefore(renderer.domElement, container.firstChild);
+
+// Scene & Camera
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
+camera.position.set(0, 0.3, 3.8);
+
+// Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableZoom = false;
+controls.enablePan = false;
+controls.minPolarAngle = Math.PI / 3;
+controls.maxPolarAngle = Math.PI / 1.8;
+controls.minAzimuthAngle = -Math.PI / 4;
+controls.maxAzimuthAngle =  Math.PI / 4;
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+sun.position.set(3, 8, 5);
+sun.castShadow = true;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0xa0c0ff, 0.45);
+fill.position.set(-3, 4, -2);
+scene.add(fill);
+const point = new THREE.PointLight(0xffe8d0, 0.7);
+point.position.set(0, 4, 3);
+scene.add(point);
+
+// Shadow ground
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(8, 8),
+  new THREE.ShadowMaterial({ opacity: 0.35 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -1.82;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// ── Helper functions ──
+function box(w, h, d, color, rough = 0.7, metal = 0) {
+  const m = new THREE.Mesh(
+    new THREE.BoxGeometry(w, h, d),
+    new THREE.MeshStandardMaterial({ color, roughness: rough, metalness: metal })
+  );
+  m.castShadow = true;
+  return m;
+}
+
+function cyl(rt, rb, h, color, segs = 12, rough = 0.7) {
+  const m = new THREE.Mesh(
+    new THREE.CylinderGeometry(rt, rb, h, segs),
+    new THREE.MeshStandardMaterial({ color, roughness: rough })
+  );
+  m.castShadow = true;
+  return m;
+}
+
+function sphere(r, color, rough = 0.7) {
+  const m = new THREE.Mesh(
+    new THREE.SphereGeometry(r, 14, 14),
+    new THREE.MeshStandardMaterial({ color, roughness: rough })
+  );
+  m.castShadow = true;
+  return m;
+}
+
+function circle(r, color, rough = 0.3, opacity = 1) {
+  return new THREE.Mesh(
+    new THREE.CircleGeometry(r, 20),
+    new THREE.MeshStandardMaterial({ color, roughness: rough, transparent: opacity < 1, opacity, side: THREE.DoubleSide })
+  );
+}
+
+function torus(r, tube, color, rough = 0.3, metal = 0.6) {
+  return new THREE.Mesh(
+    new THREE.TorusGeometry(r, tube, 8, 24),
+    new THREE.MeshStandardMaterial({ color, roughness: rough, metalness: metal })
+  );
+}
+
+// ── Build character ──
+const character = new THREE.Group();
+character.position.y = -1.8;
+scene.add(character);
+
+const body = new THREE.Group();
+character.add(body);
+
+// Legs
+const legL = box(0.22, 0.72, 0.2, C.pants); legL.position.set(-0.18, 0.38, 0); body.add(legL);
+const legR = box(0.22, 0.72, 0.2, C.pants); legR.position.set( 0.18, 0.38, 0); body.add(legR);
+
+// Shoes
+const shoeL = box(0.2, 0.1, 0.3, C.shoes, 0.4, 0.1); shoeL.position.set(-0.18, 0.02, 0.04); body.add(shoeL);
+const shoeR = box(0.2, 0.1, 0.3, C.shoes, 0.4, 0.1); shoeR.position.set( 0.18, 0.02, 0.04); body.add(shoeR);
+
+// Belt
+const belt = box(0.5, 0.06, 0.21, C.belt, 0.4, 0.2); belt.position.set(0, 0.76, 0); body.add(belt);
+const buckle = box(0.08, 0.05, 0.01, 0x888888, 0.2, 0.8); buckle.position.set(0, 0.76, 0.11); body.add(buckle);
+
+// Shirt torso
+const shirt = box(0.52, 0.6, 0.24, C.shirt); shirt.position.set(0, 1.08, 0); body.add(shirt);
+
+// Blazer
+const blazer = box(0.62, 0.62, 0.22, C.blazer); blazer.position.set(0, 1.08, 0); body.add(blazer);
+
+// Lapels
+const lapelL = box(0.12, 0.28, 0.015, C.blazer); lapelL.position.set(-0.14, 1.42, 0.11); lapelL.rotation.z = 0.22; body.add(lapelL);
+const lapelR = box(0.12, 0.28, 0.015, C.blazerDark); lapelR.position.set(0.14, 1.42, 0.11); lapelR.rotation.z = -0.22; body.add(lapelR);
+
+// Lapel pin
+const pinM = circle(0.022, C.pin, 0.3); pinM.position.set(0.2, 1.28, 0.12); body.add(pinM);
+
+// Tie
+const tieG = new THREE.Group();
+tieG.position.set(0.02, 1.36, 0.13);
+const tieShape = new THREE.Shape();
+tieShape.moveTo(0, 0.22);
+tieShape.lineTo(-0.04, 0.16);
+tieShape.lineTo(-0.055, -0.12);
+tieShape.lineTo(0, -0.18);
+tieShape.lineTo(0.055, -0.12);
+tieShape.lineTo(0.04, 0.16);
+tieShape.closePath();
+const tieMesh = new THREE.Mesh(
+  new THREE.ShapeGeometry(tieShape),
+  new THREE.MeshStandardMaterial({ color: C.tie, roughness: 0.6, side: THREE.DoubleSide })
+);
+tieG.add(tieMesh);
+const tieKnot = box(0.065, 0.04, 0.01, C.tieDot, 0.5); tieKnot.position.set(0, 0.21, 0.005); tieG.add(tieKnot);
+[-0.04, -0.1, -0.16].forEach(y => {
+  const dot = circle(0.008, C.tieDot); dot.position.set(0, y, 0.005); tieG.add(dot);
+});
+body.add(tieG);
+
+// Buttons
+[1.05, 0.9].forEach(y => {
+  const btn = cyl(0.016, 0.016, 0.01, C.blazerDark, 12, 0.5);
+  btn.rotation.x = Math.PI / 2;
+  btn.position.set(0, y, 0.12);
+  body.add(btn);
+});
+
+// Neck
+const neck = cyl(0.1, 0.12, 0.18, C.skin); neck.position.set(0, 1.52, 0); body.add(neck);
+
+// ── RIGHT ARM (handshake) ──
+const rightArmGroup = new THREE.Group();
+rightArmGroup.position.set(0.42, 1.22, 0);
+rightArmGroup.rotation.set(-0.6, 0, -0.4);
+
+const rUpperArm = cyl(0.1, 0.09, 0.38, C.blazer); rUpperArm.position.set(0.14, -0.15, 0); rightArmGroup.add(rUpperArm);
+
+const forearmGroup = new THREE.Group();
+forearmGroup.position.set(0.14, -0.38, 0);
+forearmGroup.rotation.x = 0.6;
+
+const rForearm = cyl(0.085, 0.075, 0.34, C.blazer); rForearm.position.set(0, -0.16, 0); forearmGroup.add(rForearm);
+const rCuff = cyl(0.079, 0.079, 0.06, C.shirt); rCuff.position.set(0, -0.33, 0); forearmGroup.add(rCuff);
+const rHand = box(0.13, 0.15, 0.08, C.skin); rHand.position.set(0, -0.48, 0); forearmGroup.add(rHand);
+[-0.04, -0.01, 0.02, 0.05].forEach(x => {
+  const finger = cyl(0.015, 0.012, 0.1, C.skin, 8); finger.position.set(x, -0.6, 0); forearmGroup.add(finger);
+});
+const thumb = cyl(0.017, 0.014, 0.09, C.skin, 8);
+thumb.position.set(0.075, -0.5, 0.02); thumb.rotation.z = -0.8; forearmGroup.add(thumb);
+
+rightArmGroup.add(forearmGroup);
+body.add(rightArmGroup);
+
+// ── LEFT ARM ──
+const leftArmGroup = new THREE.Group();
+leftArmGroup.position.set(-0.42, 1.22, 0);
+leftArmGroup.rotation.set(0.1, 0, 0.15);
+
+const lUpperArm = cyl(0.1, 0.09, 0.38, C.blazer); lUpperArm.position.set(-0.12, -0.15, 0); leftArmGroup.add(lUpperArm);
+const lForearm = cyl(0.085, 0.075, 0.34, C.blazer); lForearm.position.set(-0.12, -0.52, 0); leftArmGroup.add(lForearm);
+const lCuff = cyl(0.079, 0.079, 0.06, C.shirt); lCuff.position.set(-0.12, -0.69, 0); leftArmGroup.add(lCuff);
+const lHand = box(0.12, 0.13, 0.08, C.skin); lHand.position.set(-0.12, -0.8, 0); leftArmGroup.add(lHand);
+body.add(leftArmGroup);
+
+// ── HEAD ──
+const headGroup = new THREE.Group();
+headGroup.position.set(0, 1.78, 0);
+
+const headBox = box(0.44, 0.50, 0.38, C.skin); headGroup.add(headBox);
+const cheeks = sphere(0.22, C.skin); cheeks.scale.set(1.04, 0.85, 1.05); cheeks.position.set(0, -0.04, 0); headGroup.add(cheeks);
+
+// Hair
+const hairTop  = box(0.44, 0.12, 0.36, C.hair); hairTop.position.set(0, 0.24, -0.01); headGroup.add(hairTop);
+const hairL    = box(0.04, 0.22, 0.36, C.hair); hairL.position.set(-0.22, 0.14, 0); headGroup.add(hairL);
+const hairR    = box(0.04, 0.22, 0.36, C.hair); hairR.position.set( 0.22, 0.14, 0); headGroup.add(hairR);
+const hairBack = box(0.44, 0.32, 0.04, C.hair); hairBack.position.set(0, 0.1, -0.2); headGroup.add(hairBack);
+
+// Beard
+const beardChin = box(0.28, 0.14, 0.06, C.beard, 0.9); beardChin.position.set(0, -0.2, 0.17); headGroup.add(beardChin);
+const mustache  = box(0.22, 0.04, 0.04, C.beard, 0.9); mustache.position.set(0, -0.06, 0.2); headGroup.add(mustache);
+const stubbleL  = box(0.08, 0.1, 0.04, C.beard, 0.9); stubbleL.position.set(-0.16, -0.08, 0.15);
+const mL = stubbleL.material; mL.transparent = true; mL.opacity = 0.8; headGroup.add(stubbleL);
+const stubbleR  = box(0.08, 0.1, 0.04, C.beard, 0.9); stubbleR.position.set( 0.16, -0.08, 0.15);
+const mR = stubbleR.material; mR.transparent = true; mR.opacity = 0.8; headGroup.add(stubbleR);
+
+// Eyes
+const eyeWhiteL = box(0.1, 0.065, 0.01, 0xf5f0e8, 0.4); eyeWhiteL.position.set(-0.115, 0.03, 0.195); headGroup.add(eyeWhiteL);
+const irisL     = circle(0.025, 0x3a2010, 0.2); irisL.position.set(-0.115, 0.03, 0.2); headGroup.add(irisL);
+const eyeWhiteR = box(0.1, 0.065, 0.01, 0xf5f0e8, 0.4); eyeWhiteR.position.set( 0.115, 0.03, 0.195); headGroup.add(eyeWhiteR);
+const irisR     = circle(0.025, 0x3a2010, 0.2); irisR.position.set(0.115, 0.03, 0.2); headGroup.add(irisR);
+
+// Eyebrows
+const browL = box(0.1, 0.022, 0.005, C.hair, 0.6); browL.position.set(-0.115, 0.08, 0.2); browL.rotation.z =  0.08; headGroup.add(browL);
+const browR = box(0.1, 0.022, 0.005, C.hair, 0.6); browR.position.set( 0.115, 0.08, 0.2); browR.rotation.z = -0.08; headGroup.add(browR);
+
+// Nose
+const nose = box(0.06, 0.1, 0.04, C.skinDark, 0.7); nose.position.set(0, -0.02, 0.21); nose.rotation.x = 0.2; headGroup.add(nose);
+
+// Mouth
+const mouth = box(0.12, 0.02, 0.008, 0x5a2010, 0.4); mouth.position.set(0, -0.1, 0.198); headGroup.add(mouth);
+const smileL = box(0.04, 0.018, 0.008, 0x5a2010, 0.4); smileL.position.set(-0.065, -0.095, 0.198); smileL.rotation.z =  0.3; headGroup.add(smileL);
+const smileR = box(0.04, 0.018, 0.008, 0x5a2010, 0.4); smileR.position.set( 0.065, -0.095, 0.198); smileR.rotation.z = -0.3; headGroup.add(smileR);
+
+// Ears
+const earL = sphere(0.07, C.skin); earL.position.set(-0.24, 0.02, 0); headGroup.add(earL);
+const earR = sphere(0.07, C.skin); earR.position.set( 0.24, 0.02, 0); headGroup.add(earR);
+
+// Glasses
+function addGlasses(side) {
+  const x = side * 0.135;
+  const frame = torus(0.085, 0.012, C.glasses);
+  frame.position.set(x, 0, 0);
+  headGroup.add(frame);
+  const lens = circle(0.073, C.lens, 0, 0.35);
+  lens.position.set(x, 0, 0.005);
+  headGroup.add(lens);
+}
+addGlasses(-1); addGlasses(1);
+
+// Bridge
+const bridge = cyl(0.008, 0.008, 0.1, C.glasses, 8, 0.3); bridge.rotation.z = Math.PI/2; bridge.position.set(0, 0, 0); headGroup.add(bridge);
+// Temple arms
+const templeL = cyl(0.006, 0.006, 0.14, C.glasses, 8, 0.3); templeL.rotation.z = Math.PI/2; templeL.position.set(-0.22, 0, -0.05); templeL.rotation.set(0, 0.4, 0); headGroup.add(templeL);
+const templeR = cyl(0.006, 0.006, 0.14, C.glasses, 8, 0.3); templeR.position.set( 0.22, 0, -0.05); templeR.rotation.set(0, -0.4, 0); headGroup.add(templeR);
+
+body.add(headGroup);
+
+// Floating ring
+const ringGroup = new THREE.Group();
+ringGroup.position.y = 1.5;
+const ring = new THREE.Mesh(
+  new THREE.TorusGeometry(0.5, 0.012, 8, 60),
+  new THREE.MeshStandardMaterial({ color: 0x60a0ff, emissive: 0x60a0ff, emissiveIntensity: 0.6 })
+);
+ringGroup.add(ring);
+character.add(ringGroup);
+
+// ── Mouse tracking ──
+let mouseX = 0, mouseY = 0;
+container.addEventListener('mousemove', (e) => {
+  const r = container.getBoundingClientRect();
+  mouseX = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+  mouseY = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+});
+container.addEventListener('mouseleave', () => { mouseX = 0; mouseY = 0; });
+
+// ── Animate ──
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+
+  // Breathing
+  body.position.y = Math.sin(t * 1.2) * 0.005;
+  body.scale.y = 1 + Math.sin(t * 1.2) * 0.004;
+
+  // Head follow mouse
+  headGroup.rotation.x += (-mouseY * 0.18 - headGroup.rotation.x) * 0.06;
+  headGroup.rotation.y += ( mouseX * 0.25 - headGroup.rotation.y) * 0.06;
+  headGroup.rotation.x += Math.sin(t * 0.4) * 0.005;
+
+  // Right arm handshake / wave
+  rightArmGroup.rotation.z = -0.4 + Math.sin(t * 2.5) * 0.3;
+  rightArmGroup.rotation.x = -0.6 + Math.sin(t * 2.5 + 0.5) * 0.15;
+  forearmGroup.rotation.x = 0.6 + Math.sin(t * 3) * 0.2;
+  forearmGroup.rotation.z = Math.sin(t * 2.5) * 0.15;
+
+  // Left arm sway
+  leftArmGroup.rotation.z = 0.15 + Math.sin(t * 1.2 + 1) * 0.04;
+
+  // Body sway
+  character.rotation.y = Math.sin(t * 0.3) * 0.03;
+
+  // Floating ring
+  ringGroup.position.y = 1.5 + Math.sin(t * 1.5) * 0.06;
+  ring.rotation.y = t * 0.4;
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+// ── Resize ──
+window.addEventListener('resize', () => {
+  const W2 = container.clientWidth, H2 = container.clientHeight;
+  camera.aspect = W2 / H2;
+  camera.updateProjectionMatrix();
+  renderer.setSize(W2, H2);
+});
+</script>
+</body>
+</html>

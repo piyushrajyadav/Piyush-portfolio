@@ -1,0 +1,33 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="yanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0f172a"/>
+  
+  <!-- Robot/AI Head -->
+  <rect x="160" y="80" width="80" height="80" rx="10" fill="url(#yanGrad)" opacity="0.2"/>
+  <rect x="165" y="85" width="70" height="70" rx="8" fill="none" stroke="url(#yanGrad)" stroke-width="3"/>
+  
+  <!-- Eyes -->
+  <circle cx="185" cy="110" r="8" fill="#ec4899"/>
+  <circle cx="215" cy="110" r="8" fill="#ec4899"/>
+  
+  <!-- Antenna -->
+  <line x1="200" y1="85" x2="200" y2="65" stroke="url(#yanGrad)" stroke-width="3"/>
+  <circle cx="200" cy="60" r="5" fill="#ec4899"/>
+  
+  <!-- Code brackets -->
+  <text x="175" y="145" font-family="monospace" font-size="20" fill="#8b5cf6">&lt;/&gt;</text>
+  
+  <!-- Team members -->
+  <circle cx="100" cy="200" r="15" fill="#ec4899" opacity="0.6"/>
+  <circle cx="160" cy="200" r="15" fill="#8b5cf6" opacity="0.6"/>
+  <circle cx="240" cy="200" r="15" fill="#ec4899" opacity="0.6"/>
+  <circle cx="300" cy="200" r="15" fill="#8b5cf6" opacity="0.6"/>
+  
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+        fill="#ec4899" text-anchor="middle">Yantrika AI</text>
+</svg>

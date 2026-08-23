@@ -13,7 +13,7 @@ import { Canvas } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import PlayerModel from "./models/PlayerModel";
 
-function Player({ isMobile, isPaused }) {
+function Player({ isMobile }) {
   const group = useRef();
   const [animationsLoaded, setAnimationsLoaded] = useState(false);
 
@@ -31,35 +31,27 @@ function Player({ isMobile, isPaused }) {
     if (waveAnimation && actions["wave-animation"]) {
       setAnimationsLoaded(true);
     }
-    if (animationsLoaded && !isPaused) {
+    if (animationsLoaded) {
       actions["wave-animation"].reset().play();
     }
-    if (isPaused && actions["wave-animation"]) {
-      actions["wave-animation"].paused = true;
-    } else if (!isPaused && actions["wave-animation"]) {
-      actions["wave-animation"].paused = false;
-    }
-  }, [animationsLoaded, waveAnimation, actions, isPaused]);
+  }, [animationsLoaded, waveAnimation, actions]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (waveAnimation && actions["wave-animation"]) {
-        setAnimationsLoaded(true);
-      }
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [waveAnimation, actions]);
+  setTimeout(() => {
+    if (waveAnimation && actions["wave-animation"]) {
+      setAnimationsLoaded(true);
+    }
+  }, 2000);
 
   return (
     <>
       <ambientLight intensity={1} />
       <PerspectiveCamera
         makeDefault
-        position={[0, 0, 12]}
-        fov={30}
-        near={0.8}
-        far={120}
-        zoom={1.4}
+        position={[0, 0, 10]}
+        fov={34}
+        near={0.5}
+        far={150}
+        zoom={1.2}
       />
       <RandomizedLight position={[0, 1, 0]} />
       <pointLight intensity={2} position={[1, 1.5, 0]} color={"#804dee"} />
@@ -82,8 +74,8 @@ function Player({ isMobile, isPaused }) {
           nodes={nodes}
           materials={materials}
           rotation={[-1.6, 0, 0]}
-          position={isMobile ? [0, -2.7, 0] : [0, -2.1, 0]}
-          scale={isMobile ? 3 : 2}
+          position={isMobile ? [0, -2.55, 0] : [0.28, -2.15, 0]}
+          scale={isMobile ? 3.0 : 2.35}
           group={group}
         />
       </Suspense>
@@ -91,20 +83,17 @@ function Player({ isMobile, isPaused }) {
   );
 }
 
-function PlayerCanvas({ isMobile, isPaused = false }) {
+function PlayerCanvas({ isMobile }) {
   return (
     <Canvas
-      dpr={1}
-      frameloop={isPaused ? "never" : "always"}
+      dpr={[1, 2]}
       gl={{
         outputColorSpace: THREE.SRGBColorSpace,
         alpha: true,
-        antialias: false,
-        powerPreference: "high-performance",
       }}
-      style={{ width: "100%", height: "100%", minHeight: "440px" }}
+      style={{ width: "100%", height: "100%", minHeight: "560px" }}
     >
-      <Player isMobile={isMobile} isPaused={isPaused} />
+      <Player isMobile={isMobile} />
     </Canvas>
   );
 }

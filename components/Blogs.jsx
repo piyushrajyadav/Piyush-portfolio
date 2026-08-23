@@ -1,197 +1,223 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { SectionWrapper } from '../hoc';
-import { fadeIn, textVariant } from '../utils/motion';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { SectionWrapper } from "../hoc";
+import { fadeIn, textVariant } from "../utils/motion";
 
-const ArticleCard = ({ title, link, pubDate, thumbnail }) => (
-  <motion.div
-    variants={fadeIn("right", "spring", 0.5, 0.75)}
-    className="group dark:bg-bgSecondaryDark bg-gray-50 p-5 rounded-2xl sm:w-[360px] w-full transition-all duration-300 hover:shadow-xl dark:hover:shadow-primary/20 hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer border dark:border-gray-800 border-gray-200"
-    onClick={() => window.open(link, "_blank")}
-  >
-    <div className="relative w-full h-[230px] overflow-hidden rounded-xl">
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10" />
-      <img
-        src={thumbnail || 'https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png'}
-        alt={title}
-        className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-110"
-      />
-      <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
-        <p className="text-white/90 text-sm font-medium">
-          {new Date(pubDate).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}
-        </p>
-      </div>
-    </div>
+const defaultArticles = [
+  {
+    title: "Building Autonomous Multi-Agent AI Workflows with LangGraph",
+    link: "https://medium.com/@piyushrajyadav28",
+    pubDate: new Date().toISOString(),
+    thumbnail: "https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png",
+    summary: "Deep dive into stateful graph engineering, cyclic agent loops, and low-latency inference orchestration."
+  },
+  {
+    title: "Securing Multi-Agent Systems Against Inter-Agent Trust Exploitation",
+    link: "https://medium.com/@piyushrajyadav28",
+    pubDate: new Date().toISOString(),
+    thumbnail: "https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png",
+    summary: "How to build real-time security middleware layers preventing privilege escalations in agent networks."
+  },
+  {
+    title: "Designing High-Throughput Distributed Microservices with Spring Boot & Redis",
+    link: "https://medium.com/@piyushrajyadav28",
+    pubDate: new Date().toISOString(),
+    thumbnail: "https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png",
+    summary: "Architecting sub-millisecond cache layers and resilient messaging pipelines for cloud-native scale."
+  },
+  {
+    title: "Zero-Trust Architecture in Cloud-Native Kubernetes Clusters",
+    link: "https://medium.com/@piyushrajyadav28",
+    pubDate: new Date().toISOString(),
+    thumbnail: "https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png",
+    summary: "Implementing robust RBAC, network policies, and Helm automated pipelines in production."
+  }
+];
 
-    <div className="mt-5 space-y-4">
-      <h3 className="dark:text-white text-gray-900 font-bold text-[20px] leading-[1.4] group-hover:text-primary transition-colors duration-300 line-clamp-3 tracking-tight">
-        {title}
-      </h3>
-      <div className="flex items-center justify-between pt-2 border-t dark:border-gray-700 border-gray-200">
-        <span className="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors duration-300 font-medium text-[15px]">
-          Read on Medium
-          <svg 
-            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M14 5l7 7m0 0l-7 7m7-7H3" 
-            />
-          </svg>
-        </span>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-sm text-primary font-medium">Medium</span>
+function ArticleCard({ title, link, pubDate, thumbnail, summary }) {
+  const formattedDate = pubDate
+    ? new Date(pubDate).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Recent";
+
+  return (
+    <div className="w-[320px] sm:w-[360px] md:w-[390px] flex-shrink-0 h-[430px] flex flex-col select-none">
+      <a
+        href={link || "https://medium.com/@piyushrajyadav28"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative w-full h-full rounded-2xl md:rounded-3xl p-[1.5px] bg-gradient-to-br from-purple-400/40 via-indigo-300/20 to-teal-400/30 dark:from-purple-500/30 dark:via-white/[0.08] dark:to-teal-400/20 hover:from-purple-500 hover:to-teal-400 transition-all duration-300 hover:scale-[1.015] shadow-md shadow-purple-500/5 dark:shadow-none flex flex-col justify-between overflow-hidden cursor-pointer"
+      >
+        <div className="relative h-full w-full rounded-2xl md:rounded-3xl p-5 md:p-6 bg-white dark:bg-[#0b0c16] flex flex-col justify-between overflow-hidden border border-slate-200/90 dark:border-white/[0.06]">
+          {/* Subtle interior laser grid & ambient glow */}
+          <div className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.08] bg-[linear-gradient(to_right,#804dee_1px,transparent_1px),linear-gradient(to_bottom,#804dee_1px,transparent_1px)] bg-[size:24px_24px]" />
+          <div className="pointer-events-none absolute -inset-20 bg-gradient-to-br from-purple-500/10 via-transparent to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+
+          <div>
+            {/* Article Thumbnail */}
+            <div className="relative w-full h-[180px] overflow-hidden rounded-xl bg-slate-100 dark:bg-black/50 border border-slate-200/70 dark:border-white/[0.08]">
+              <img
+                src={thumbnail || "https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png"}
+                alt={title}
+                className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+
+              {/* Floating Header Badges */}
+              <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
+                <span className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium bg-black/70 backdrop-blur-md text-teal-300 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                  Medium Story
+                </span>
+                <span className="px-2 py-0.5 text-[10px] font-medium bg-black/60 text-gray-300 rounded-md backdrop-blur-md">
+                  {formattedDate}
+                </span>
+              </div>
+            </div>
+
+            {/* Title & Summary */}
+            <div className="mt-4">
+              <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-purple-600 dark:group-hover:text-teal-300 transition-colors duration-200 line-clamp-2">
+                {title}
+              </h3>
+              {summary && (
+                <p className="mt-2 text-xs text-slate-600 dark:text-gray-300 leading-relaxed font-normal line-clamp-2">
+                  {summary}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Bottom Action Row */}
+          <div className="mt-4 pt-3 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-teal-400">
+            <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+              Read Article on Medium
+            </span>
+            <span className="text-sm transition-transform duration-200 group-hover:translate-x-1">
+              →
+            </span>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
-  </motion.div>
-);
+  );
+}
 
-const Articles = () => {
+function Blogs() {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        setLoading(true);
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://medium.com/feed/@piyushrajyadav28'));
+        const response = await fetch(
+          "https://api.allorigins.win/raw?url=" +
+            encodeURIComponent("https://medium.com/feed/@piyushrajyadav28")
+        );
         const text = await response.text();
-        
+
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(text, 'text/xml');
-        const items = xmlDoc.getElementsByTagName('item');
-        
-        const allArticles = Array.from(items).map(item => {
-          const title = item.getElementsByTagName('title')[0]?.textContent || '';
-          const link = item.getElementsByTagName('link')[0]?.textContent || '';
-          const pubDate = item.getElementsByTagName('pubDate')[0]?.textContent || '';
-          
-          let thumbnail = '';
-          const contentEncoded = item.getElementsByTagName('content:encoded')[0]?.textContent || '';
-          const imgMatch = contentEncoded.match(/<img[^>]+src="([^">]+)"/);
-          if (imgMatch) {
-            thumbnail = imgMatch[1];
-          }
-          
-          return {
-            title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
-            link,
-            pubDate,
-            thumbnail
-          };
-        });
-        
-        setArticles(allArticles);
+        const xmlDoc = parser.parseFromString(text, "text/xml");
+        const items = xmlDoc.getElementsByTagName("item");
+
+        if (items && items.length > 0) {
+          const allArticles = Array.from(items).map((item) => {
+            const title = item.getElementsByTagName("title")[0]?.textContent || "";
+            const link = item.getElementsByTagName("link")[0]?.textContent || "";
+            const pubDate = item.getElementsByTagName("pubDate")[0]?.textContent || "";
+
+            let thumbnail = "";
+            const contentEncoded =
+              item.getElementsByTagName("content:encoded")[0]?.textContent || "";
+            const imgMatch = contentEncoded.match(/<img[^>]+src="([^">]+)"/);
+            if (imgMatch) {
+              thumbnail = imgMatch[1];
+            }
+
+            return {
+              title: title
+                .replace(/&amp;/g, "&")
+                .replace(/&lt;/g, "<")
+                .replace(/&gt;/g, ">"),
+              link,
+              pubDate,
+              thumbnail,
+            };
+          });
+          setArticles(allArticles);
+        } else {
+          setArticles(defaultArticles);
+        }
       } catch (error) {
-        console.error('Error fetching articles:', error);
-      } finally {
-        setLoading(false);
+        console.error("Error fetching articles:", error);
+        setArticles(defaultArticles);
       }
     };
 
     fetchArticles();
   }, []);
 
+  const displayArticles = articles.length > 0 ? articles : defaultArticles;
+
   return (
-    <section className="relative w-full min-h-screen mx-auto overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div 
+    <section className="w-full my-16 md:my-28 relative z-10 overflow-hidden" id="articles">
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-8">
+        <motion.div
           variants={textVariant()}
-          className="text-center mb-16"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
         >
-          <p className="sectionSubText">My Latest Writings</p>
-          <h2 className="sectionHeadText">Tech Stories.</h2>
+          <p className="sectionSubText text-slate-500 dark:text-gray-300">Engineering Insights & Research</p>
+          <h2 className="sectionHeadText text-slate-900 dark:text-white">Tech Stories & Articles.</h2>
         </motion.div>
 
-        {/* Infinite Slider - All Articles */}
-        {loading ? (
-          <div className="flex items-center justify-center w-full py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-          </div>
-        ) : articles.length > 0 ? (
-          <div className="relative">
-            {/* Gradient overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r dark:from-bgPrimaryDark from-bgPrimaryLight to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l dark:from-bgPrimaryDark from-bgPrimaryLight to-transparent z-10 pointer-events-none" />
-            
-            {/* Single Row */}
-            <div className="overflow-hidden cursor-grab active:cursor-grabbing">
-              <motion.div
-                className="flex gap-10"
-                drag="x"
-                dragConstraints={{ left: -2000, right: 0 }}
-                dragElastic={0.1}
-                animate={{
-                  x: ["0%", "-50%"],
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 30,
-                    ease: "linear",
-                  },
-                }}
-              >
-                {[...articles, ...articles].map((article, index) => (
-                  <motion.div
-                    key={`slider-${index}`}
-                    className="flex-shrink-0 w-[320px]"
-                    whileHover={{ scale: 1.05, zIndex: 10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArticleCard {...article} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        ) : (
-          <div className="text-center w-full py-20">
-            <p className="dark:text-gray-400 text-gray-600 text-lg">Loading articles...</p>
-          </div>
-        )}
-
-        <motion.div 
-          variants={fadeIn("up", "spring", 0.5, 0.75)}
-          className="mt-16 text-center"
+        {/* Description */}
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="mt-3 text-sm md:text-base text-slate-600 dark:text-gray-300 max-w-3xl leading-relaxed"
         >
-          <a
-            href="https://medium.com/@piyushrajyadav28"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 font-medium text-lg"
-          >
-            Read More Stories
-            <svg 
-              className="w-5 h-5" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-              />
-            </svg>
-          </a>
-        </motion.div>
+          Continuous stream of engineering publications on stateful agentic loops, distributed scalability, and cloud-native architecture. Hover over any card to pause and read.
+        </motion.p>
+      </div>
+
+      {/* Articles Continuous Marquee with Pause on Hover and Edge Fades */}
+      <div className="marquee-container relative w-full py-4 overflow-hidden">
+        {/* Left & Right Edge Gradient Fade Masks */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-36 bg-gradient-to-r from-bgPrimaryLight dark:from-bgPrimaryDark to-transparent z-20" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-36 bg-gradient-to-l from-bgPrimaryLight dark:from-bgPrimaryDark to-transparent z-20" />
+
+        <div className="overflow-hidden w-full">
+          <div className="animate-marquee-left-fast flex gap-7 pl-6">
+            {[...displayArticles, ...displayArticles, ...displayArticles, ...displayArticles].map(
+              (article, idx) => (
+                <ArticleCard key={`art-${idx}`} {...article} />
+              )
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* View All Button */}
+      <div className="mt-10 text-center">
+        <a
+          href="https://medium.com/@piyushrajyadav28"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs md:text-sm font-semibold hover:bg-purple-600 dark:hover:bg-teal-400 dark:hover:text-slate-950 transition-all duration-300 shadow-md hover:scale-105 cursor-pointer"
+        >
+          <span>Explore All Articles on Medium</span>
+          <span>↗</span>
+        </a>
       </div>
     </section>
   );
-};
+}
 
-export default SectionWrapper(Articles, "articles");
+export default SectionWrapper(Blogs, "articles");

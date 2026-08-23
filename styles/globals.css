@@ -402,3 +402,156 @@ svg {
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
 }
+
+/* Moving Dot Card Styles */
+@keyframes moveDot {
+  0%, 100% {
+    top: 10%;
+    right: 10%;
+  }
+  25% {
+    top: 10%;
+    right: calc(100% - 35px);
+  }
+  50% {
+    top: calc(100% - 30px);
+    right: calc(100% - 35px);
+  }
+  75% {
+    top: calc(100% - 30px);
+    right: 10%;
+  }
+}
+
+.outer {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  padding: 1.5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.moving-dot-card {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.moving-dot-card .ray {
+  width: 220px;
+  height: 45px;
+  border-radius: 100px;
+  position: absolute;
+  background-color: #804dee;
+  opacity: 0.25;
+  box-shadow: 0 0 50px #804dee;
+  filter: blur(14px);
+  transform: rotate(-40deg);
+  top: 10px;
+  left: -20px;
+  pointer-events: none;
+}
+
+.moving-dot-card .text {
+  font-weight: 800;
+  font-size: 2.75rem;
+  background: linear-gradient(45deg, #a855f7 0%, #ffffff 50%, #00cea8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.moving-dot-card .label {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-weight: 500;
+  margin-top: 0.35rem;
+}
+
+.moving-dot-card .line {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.15;
+}
+.moving-dot-card .topl {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(128, 77, 238, 0.4) 30%, rgba(0, 206, 168, 0.3) 70%, transparent 100%);
+}
+.moving-dot-card .bottoml {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(128, 77, 238, 0.2) 50%, transparent 100%);
+}
+.moving-dot-card .leftl {
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(128, 77, 238, 0.3) 30%, transparent 100%);
+}
+.moving-dot-card .rightl {
+  right: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 206, 168, 0.3) 70%, transparent 100%);
+}
+
+/* Hardware-Accelerated Continuous Marquee with Pause on Hover */
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 55s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 58s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 48s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-right,
+.marquee-container:hover .animate-marquee-left-fast {
+  animation-play-state: paused !important;
+}
+

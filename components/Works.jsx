@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Tilt from "react-parallax-tilt";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 import { projects, projectCategories } from "../constants";
@@ -9,8 +8,7 @@ import truncateText from "@/utils/truncate";
 import GithubLogo from "./../public/assets/icons/github.svg";
 import RocketLogo from "./../public/assets/icons/rocket.svg";
 
-function ProjectCard({
-  index,
+function FuturisticProjectCard({
   name,
   description,
   tags,
@@ -18,293 +16,257 @@ function ProjectCard({
   source_code_link,
   deployed_link,
   featured,
+  category,
 }) {
-  const CHAR_LIMIT = 280;
+  const CHAR_LIMIT = 170;
+  const hasLiveLink = Boolean(deployed_link && deployed_link.trim() !== "");
+  const hasSourceLink = Boolean(source_code_link && source_code_link.trim() !== "");
 
   return (
-    <motion.div
-      variants={fadeIn("up", "spring", index * 0.15, 0.75)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.1 }}
-      className="h-full"
-    >
-      <Tilt
-        tiltMaxAngleX="8"
-        tiltMaxAngleY="8"
-        scale={1.02}
-        transitionSpeed={450}
-        className={`dark:bg-bgSecondaryDark bg-bgSecondaryLight p-5 rounded-2xl w-full h-full min-h-[590px] shadow-sm hover:shadow-lg transition-shadow duration-300 ${
-          featured
-            ? "shadow-primary ring-1 ring-primary/20"
-            : "shadow-primary/50"
-        }`}
-      >
-        {featured && (
-          <div className="absolute top-3 left-3 z-10">
-            <span className="px-3 py-1 text-xs font-semibold bg-gradient-to-r from-primary to-tertiary text-white rounded-full shadow-lg">
-              ⭐ Featured
-            </span>
+    <div className="w-full h-full min-h-[470px] flex flex-col select-none">
+      <div className="group relative w-full h-full rounded-2xl md:rounded-3xl p-[1.5px] bg-gradient-to-b from-purple-500/30 via-slate-200/50 to-teal-400/30 dark:from-purple-500/40 dark:via-white/[0.06] dark:to-teal-400/20 hover:from-purple-500 hover:via-indigo-500 hover:to-teal-400 transition-all duration-500 shadow-md hover:shadow-[0_0_30px_-5px_rgba(128,77,238,0.35)] flex flex-col justify-between overflow-hidden">
+        {/* Card Interior */}
+        <div className="relative h-full w-full rounded-2xl md:rounded-3xl p-5 md:p-6 bg-white/95 dark:bg-[#090a12]/95 backdrop-blur-2xl flex flex-col justify-between overflow-hidden border border-slate-200/90 dark:border-white/[0.08]">
+          {/* Cyber Corner Crosshairs */}
+          <span className="pointer-events-none absolute top-2 left-2 text-[10px] text-purple-400/40 dark:text-purple-400/30 font-mono select-none">
+            ⌜
+          </span>
+          <span className="pointer-events-none absolute top-2 right-2 text-[10px] text-teal-400/40 dark:text-teal-400/30 font-mono select-none">
+            ⌝
+          </span>
+          <span className="pointer-events-none absolute bottom-2 left-2 text-[10px] text-purple-400/40 dark:text-purple-400/30 font-mono select-none">
+            ⌞
+          </span>
+          <span className="pointer-events-none absolute bottom-2 right-2 text-[10px] text-teal-400/40 dark:text-teal-400/30 font-mono select-none">
+            ⌟
+          </span>
+
+          {/* Ambient Glow Spotlight on Hover */}
+          <div className="pointer-events-none absolute -inset-24 bg-gradient-to-br from-purple-500/10 via-transparent to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl" />
+
+          <div>
+            {/* Top Bar: Terminal Status Lights + Category Badge */}
+            <div className="relative z-10 flex items-center justify-between gap-2 mb-3.5 pb-2.5 border-b border-slate-200/80 dark:border-white/[0.06]">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-rose-500/80 group-hover:bg-rose-500 transition-colors" />
+                <span className="w-2 h-2 rounded-full bg-amber-500/80 group-hover:bg-amber-500 transition-colors" />
+                <span className="w-2 h-2 rounded-full bg-emerald-500/80 group-hover:bg-emerald-500 transition-colors animate-pulse" />
+                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-gray-400 ml-1.5 uppercase tracking-wider">
+                  {category}
+                </span>
+              </div>
+
+              {featured && (
+                <span className="flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full shadow-xs">
+                  ⭐ Featured
+                </span>
+              )}
+            </div>
+
+            {/* Clean Project Image Frame (uncluttered) */}
+            <div className="relative w-full h-[185px] overflow-hidden rounded-xl bg-slate-100 dark:bg-black/60 border border-slate-200 dark:border-white/[0.1] group-hover:border-purple-400/40 transition-colors">
+              <div className="w-full h-full relative transition-transform duration-700 ease-out group-hover:scale-105">
+                <Image
+                  src={image}
+                  alt={name}
+                  fill={true}
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Gradient Scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* Title & Description */}
+            <div className="mt-3.5">
+              <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-purple-600 dark:group-hover:text-teal-300 transition-colors duration-200 line-clamp-1">
+                {name}
+              </h3>
+              <p className="mt-1.5 text-xs text-slate-600 dark:text-gray-300 leading-relaxed font-normal line-clamp-2">
+                {truncateText(description, CHAR_LIMIT)}
+              </p>
+            </div>
           </div>
-        )}
-        <div className="relative w-full h-[230px] overflow-hidden rounded-2xl">
-          <motion.div 
-            className="w-full h-full object-cover relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Image
-              src={image}
-              alt="project_image"
-              fill={true}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
-              className="object-cover"
-            />
-          </motion.div>
 
-          {deployed_link && (
-            <div className="absolute inset-0 flex justify-start m-3 card-img_hover">
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 10 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.open(deployed_link, "_blank")}
-                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-primary/50 transition-shadow"
-              >
-                <RocketLogo className="w-1/2 h-1/2 mr-[2px] z-10" />
-              </motion.div>
+          {/* Bottom Section: Tags & Dedicated GitHub / Live Action Buttons */}
+          <div className="relative z-10 mt-3 pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex flex-col gap-3">
+            {/* Tech Badges */}
+            <div className="flex flex-wrap gap-1.5">
+              {tags?.slice(0, 4).map((tag) => (
+                <span
+                  key={`${name}-${tag.name}`}
+                  className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/[0.08] text-slate-700 dark:text-gray-300"
+                >
+                  #{tag.name}
+                </span>
+              ))}
             </div>
-          )}
-          {source_code_link && (
-            <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: -10 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.open(source_code_link, "_blank")}
-                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-white/30 transition-shadow"
-              >
-                <GithubLogo className="w-2/3 h-2/3 z-10" />
-              </motion.div>
+
+            {/* Bottom Row: Direct Clickable GitHub & Live Action Buttons */}
+            <div className="flex items-center justify-between gap-2 pt-1">
+              {hasSourceLink ? (
+                <a
+                  href={source_code_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-white/[0.08] hover:bg-purple-600 dark:hover:bg-purple-600 text-white text-xs font-semibold border border-slate-800 dark:border-white/10 hover:border-purple-400 transition-all duration-200 shadow-xs hover:scale-105 cursor-pointer"
+                  title="View GitHub Repository"
+                >
+                  <div className="w-3.5 h-3.5 relative shrink-0">
+                    <GithubLogo className="w-full h-full" />
+                  </div>
+                  <span>GitHub</span>
+                </a>
+              ) : (
+                <span className="text-gray-400 text-[11px] font-mono">Proprietary</span>
+              )}
+
+              {hasLiveLink ? (
+                <a
+                  href={deployed_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 text-xs font-bold shadow-xs hover:shadow-teal-500/20 hover:scale-105 transition-all duration-200 cursor-pointer"
+                  title="Open Live Application"
+                >
+                  <div className="w-3.5 h-3.5 relative shrink-0">
+                    <RocketLogo className="w-full h-full" />
+                  </div>
+                  <span>Live App</span>
+                </a>
+              ) : (
+                <span className="text-slate-400 dark:text-gray-500 text-[10px] font-mono">
+                  CLI / Service
+                </span>
+              )}
             </div>
-          )}
+          </div>
         </div>
-
-        <div className="mt-5">
-          <h3 className="dark:text-ctnPrimaryDark text-ctnPrimaryLight font-bold text-[22px] leading-tight hover:text-primary transition-colors duration-200">
-            {name}
-          </h3>
-          <p className="mt-3 dark:text-ctnSecondaryDark text-ctnSecondaryLight text-[14px] leading-relaxed">
-            {truncateText(description, CHAR_LIMIT)}
-          </p>
-        </div>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <motion.span
-              key={`${name}-${tag.name}`}
-              whileHover={{ scale: 1.05, y: -2 }}
-              className={`text-[13px] font-medium ${tag.color} cursor-default`}
-            >
-              #{tag.name}
-            </motion.span>
-          ))}
-        </div>
-      </Tilt>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 function Works() {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredProjects = activeCategory === "all" 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
+  // Strictly filter only projects that belong to the active category
+  const filteredProjects =
+    activeCategory === "all"
+      ? projects
+      : projects.filter((project) => project.category === activeCategory);
 
-  // Split ALL projects into two rows for carousel (not filtered)
-  const allProjects = projects;
-  const midPoint = Math.ceil(allProjects.length / 2);
-  const firstRow = allProjects.slice(0, midPoint);
-  const secondRow = allProjects.slice(midPoint);
+  // If more than 3 projects, we enable moving marquee; if <= 3 projects, we show a clean static grid
+  const shouldMove = filteredProjects.length > 3;
+
+  // Duplicate items for seamless continuous marquee loop if moving
+  const marqueeItems = shouldMove
+    ? Array(Math.max(4, Math.ceil(12 / filteredProjects.length)))
+        .fill(filteredProjects)
+        .flat()
+    : filteredProjects;
 
   return (
-    <div className="xl:my-36 md:mx-36 p-8" id="projects">
-      <motion.div
-        variants={textVariant()}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-      >
-        <p className={"sectionSubText"}>My work</p>
-        <h2 className={"sectionHeadText"}>Projects.</h2>
-      </motion.div>
-
-      <div className="w-full flex">
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
-          className="mt-3 dark:text-ctnSecondaryDark text-ctnSecondaryLight text-[17px] max-w-3xl leading-[30px]"
+    <section className="w-full my-16 md:my-28 relative z-10 overflow-hidden" id="projects">
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-8">
+        <motion.div
+          variants={textVariant()}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          From systems engineering to AI and web applications, each project demonstrates 
-          real-world engineering. Featured projects have gained international traction with 100+ developers, 
-          Product Hunt recognition, and PyPI/NPM publications. Toggle between categories or view all in the sliding showcase.
+          <p className="sectionSubText text-slate-500 dark:text-gray-300">Selected Work & Innovations</p>
+          <h2 className="sectionHeadText text-slate-900 dark:text-white">Featured Projects.</h2>
+        </motion.div>
+
+        {/* Description */}
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="mt-3 text-sm md:text-base text-slate-600 dark:text-gray-300 max-w-3xl leading-relaxed"
+        >
+          Explore production-grade multi-agent AI frameworks, Kubernetes deployment engines, custom Git internal architectures, and published packages.
         </motion.p>
+
+        {/* Category Tabs */}
+        <div className="flex flex-wrap gap-2.5 p-1.5 rounded-2xl bg-slate-200/70 dark:bg-white/[0.04] border border-slate-300/80 dark:border-white/[0.08] backdrop-blur-xl w-fit mt-8">
+          {projectCategories.map((category) => {
+            const isActive = activeCategory === category.id;
+
+            return (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-white dark:bg-purple-600 text-purple-700 dark:text-white shadow-md font-semibold scale-[1.02]"
+                    : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                {category.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Category Tabs */}
-      <motion.div 
-        className="mt-10 flex flex-wrap gap-3 justify-center md:justify-start"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        {projectCategories.map((category) => (
-          <motion.button
-            key={category.id}
-            onClick={() => setActiveCategory(category.id)}
-            className={`px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 ${
-              activeCategory === category.id
-                ? "bg-gradient-to-r from-primary to-tertiary text-white shadow-lg shadow-primary/50 scale-105"
-                : "dark:bg-bgSecondaryDark bg-bgSecondaryLight dark:text-ctnSecondaryDark text-ctnSecondaryLight hover:shadow-md hover:scale-105"
-            }`}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {category.label}
-          </motion.button>
-        ))}
-      </motion.div>
-
-      {/* Projects Display */}
+      {/* Projects Display: Conditional Moving Marquee vs Static Grid */}
       <AnimatePresence mode="wait">
-        {activeCategory === "all" ? (
-          // Sliding carousel for "All Projects" - Faster with drag support
+        {shouldMove ? (
+          /* > 3 Projects: 1 Continuous Moving Row with Pause on Hover */
           <motion.div
-            key="all-projects-carousel"
-            className="md:mt-12 mt-8 space-y-8 overflow-hidden relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-          >
-            {/* Gradient overlays for fade effect */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r dark:from-bgPrimaryDark from-bgPrimaryLight to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l dark:from-bgPrimaryDark from-bgPrimaryLight to-transparent z-10 pointer-events-none" />
-
-            {/* First Row - Slides Left faster */}
-            <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
-              <motion.div
-                className="flex gap-7"
-                drag="x"
-                dragConstraints={{ left: -2000, right: 0 }}
-                dragElastic={0.1}
-                animate={{
-                  x: ["0%", "-50%"],
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 25,
-                    ease: "linear",
-                  },
-                }}
-              >
-                {[...firstRow, ...firstRow].map((project, index) => (
-                  <motion.div 
-                    key={`row1-${index}`} 
-                    className="flex-shrink-0 w-[350px]"
-                    whileHover={{ 
-                      scale: 1.05,
-                      zIndex: 10,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    <ProjectCard index={index} {...project} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Second Row - Slides Right faster */}
-            <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
-              <motion.div
-                className="flex gap-7"
-                drag="x"
-                dragConstraints={{ left: -2000, right: 0 }}
-                dragElastic={0.1}
-                animate={{
-                  x: ["-50%", "0%"],
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 28,
-                    ease: "linear",
-                  },
-                }}
-              >
-                {[...secondRow, ...secondRow].map((project, index) => (
-                  <motion.div 
-                    key={`row2-${index}`} 
-                    className="flex-shrink-0 w-[350px]"
-                    whileHover={{ 
-                      scale: 1.05,
-                      zIndex: 10,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    <ProjectCard index={index} {...project} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
-        ) : (
-          // Regular grid for specific categories with stagger animation
-          <motion.div 
-            key={activeCategory}
-            className="md:mt-12 mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center"
+            key={`marquee-${activeCategory}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
+            className="marquee-container relative w-full py-4 overflow-hidden"
           >
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={`project-${activeCategory}-${index}`}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  ease: "easeOut"
-                }}
-              >
-                <ProjectCard index={index} {...project} />
-              </motion.div>
-            ))}
+            {/* Left & Right Edge Gradient Fade Masks */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-36 bg-gradient-to-r from-bgPrimaryLight dark:from-bgPrimaryDark to-transparent z-20" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-36 bg-gradient-to-l from-bgPrimaryLight dark:from-bgPrimaryDark to-transparent z-20" />
+
+            <div className="overflow-hidden w-full">
+              <div className="animate-marquee-left flex gap-7 pl-6">
+                {marqueeItems.map((project, idx) => (
+                  <div
+                    key={`${project.name}-${idx}`}
+                    className="w-[330px] sm:w-[370px] md:w-[400px] flex-shrink-0"
+                  >
+                    <FuturisticProjectCard {...project} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ) : (
+          /* <= 3 Projects: Static, Clean Responsive Grid (No Movement) */
+          <motion.div
+            key={`grid-${activeCategory}`}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {filteredProjects.map((project) => (
+                <div key={project.name} className="w-full">
+                  <FuturisticProjectCard {...project} />
+                </div>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Empty State */}
-      {filteredProjects.length === 0 && (
-        <motion.div
-          className="mt-20 text-center"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="dark:text-ctnSecondaryDark text-ctnSecondaryLight text-lg">
-            No projects found in this category yet.
-          </p>
-        </motion.div>
-      )}
-    </div>
+    </section>
   );
 }
 

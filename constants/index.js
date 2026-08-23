@@ -38,53 +38,111 @@ const navLinks = [
 
 const services = [
   {
-    title: "Software Developer",
+    id: "ai-engineer",
+    title: "AI & Intelligent Systems Engineer",
+    subtitle: "LangGraph • Low-Latency Inference • Agentic Loops • RAG",
+    description:
+      "Engineering low-latency AI architectures, cyclical agentic workflows, stateful graph orchestration with LangGraph, hybrid RAG pipelines, and multi-agent coordination systems.",
+    icon: <ProblemSolvingIcon />,
+    featured: true,
+    techStack: [
+      { name: "LangGraph", icon: "/assets/lang chain.jpg" },
+      { name: "LangChain", icon: "/assets/lang chain.jpg" },
+      { name: "Agentic Loops", icon: "/assets/icons/problem-solving.svg" },
+      { name: "Graph Engineering", icon: "/assets/icons/leadership.svg" },
+      { name: "RAG", icon: "/assets/lang chain.jpg" },
+      { name: "Voice AI Systems", icon: "/assets/icons/problem-solving.svg" },
+      { name: "Prompt Engineering", icon: "/assets/icons/leadership.svg" },
+      { name: "Multi-Agent Orchestration", icon: "/assets/icons/full-stack.svg" },
+      { name: "Python", icon: "/assets/tech/python.svg" },
+    ],
+    accent: "from-purple-500 via-indigo-500 to-teal-400",
+  },
+  {
+    id: "software-developer",
+    title: "Software Engineer (Systems & Scalability)",
+    subtitle: "Distributed Systems • Low Latency • High Concurrency • DSA",
+    description:
+      "Architecting high-throughput distributed systems, optimizing algorithmic time-complexity, asynchronous event loops, and scalable cross-platform software.",
     icon: <FullStackIcon />,
+    featured: false,
+    techStack: [
+      { name: "Java", icon: "/assets/tech/java.svg" },
+      { name: "C++", icon: "/assets/cpp.svg" },
+      { name: "Python", icon: "/assets/tech/python.svg" },
+      { name: "JavaScript", icon: "/assets/tech/javascript.svg" },
+      { name: "DSA", icon: "/assets/icons/problem-solving.svg" },
+      { name: "OOP", icon: "/assets/icons/full-stack.svg" },
+      { name: "System Design", icon: "/assets/icons/leadership.svg" },
+      { name: "OS & Networks", icon: "/assets/tech/git.svg" },
+    ],
+    accent: "from-indigo-500 via-purple-500 to-cyan-400",
   },
   {
-    title: "Frontend Developer",
+    id: "frontend-developer",
+    title: "Frontend Engineer",
+    subtitle: "React.js • Next.js • Low-Latency UIs • Three.js",
+    description:
+      "Developing fluid, high-performance web applications with optimized rendering pipelines, immersive 3D graphics, dynamic themes, and seamless micro-interactions.",
     icon: <FrontendIcon />,
+    featured: false,
+    techStack: [
+      { name: "React.js", icon: "/assets/tech/react.svg" },
+      { name: "Next.js", icon: "/assets/tech/nextjs.svg" },
+      { name: "Tailwind CSS", icon: "/assets/tech/tailwindcss.svg" },
+      { name: "Three.js", icon: "/assets/tech/threejs.svg" },
+      { name: "HTML5", icon: "/assets/tech/html5.svg" },
+      { name: "CSS3", icon: "/assets/tech/css3.svg" },
+    ],
+    accent: "from-cyan-400 via-blue-500 to-purple-500",
   },
   {
-    title: "Backend Developer",
+    id: "backend-developer",
+    title: "Backend & API Engineer",
+    subtitle: "Spring Boot • Node.js • High Throughput • PostgreSQL",
+    description:
+      "Designing fault-tolerant RESTful & GraphQL microservices, caching layers with Redis for sub-millisecond lookups, and relational database partitioning.",
     icon: <BackendIcon />,
+    featured: false,
+    techStack: [
+      { name: "Node.js", icon: "/assets/tech/nodejs.svg" },
+      { name: "Express.js", icon: "/assets/tech/expressjs.png" },
+      { name: "Spring Boot", icon: "/assets/spring-boot.png" },
+      { name: "FastAPI", icon: "/assets/fast api.png" },
+      { name: "PostgreSQL", icon: "/assets/tech/postgresql.png" },
+      { name: "MySQL", icon: "/assets/tech/my-sql.png" },
+      { name: "MongoDB", icon: "/assets/tech/mongodb.svg" },
+      { name: "Redis", icon: "/assets/redis.svg" },
+    ],
+    accent: "from-purple-500 via-pink-500 to-rose-400",
   },
   {
-    title: "DevOPS Engineer",
-    icon: <ProblemSolvingIcon />,
-  },
-  {
-    title: "AI Engineer",
-    icon: <ProblemSolvingIcon />,
+    id: "devops-engineer",
+    title: "DevOPS & Cloud Engineer",
+    subtitle: "Docker • Kubernetes • CI/CD Pipelines • AWS Cloud • Linux",
+    description:
+      "Streamlining automated CI/CD deployments, managing containerized Kubernetes clusters, cloud infrastructure provisioning, and production observability.",
+    icon: <LeaderShipIcon />,
+    featured: false,
+    techStack: [
+      { name: "Docker", icon: "/assets/tech/docker.svg" },
+      { name: "Kubernetes", icon: "/assets/Kubernetes.png" },
+      { name: "CI/CD", icon: "/assets/ci cd.webp" },
+      { name: "AWS", icon: "/assets/tech/docker.svg" },
+      { name: "GCP", icon: "/assets/tech/docker.svg" },
+      { name: "Linux", icon: "/assets/tech/git.svg" },
+      { name: "Git", icon: "/assets/tech/git.svg" },
+    ],
+    accent: "from-teal-400 via-emerald-500 to-cyan-400",
   },
 ];
 
 const technologies = {
   languages: [
     {
-      name: "HTML5",
-      icon: "/assets/tech/html5.svg",
-      link: "https://html.spec.whatwg.org/multipage/",
-    },
-    {
-      name: "CSS3",
-      icon: "/assets/tech/css3.svg",
-      link: "https://www.w3.org/Style/CSS/Overview.en.html",
-    },
-    {
       name: "JavaScript",
       icon: "/assets/tech/javascript.svg",
       link: "https://262.ecma-international.org/",
-    },
-    {
-      name: "C++",
-      icon: "/assets/cpp.svg",
-      link: "https://isocpp.org/",
-    },
-    {
-      name: "Java",
-      icon: "/assets/tech/java.svg",
-      link: "https://www.java.com/en/",
     },
     {
       name: "Python",
@@ -92,36 +150,48 @@ const technologies = {
       link: "https://www.python.org/",
     },
     {
-      name: "Go",
-      icon: "/assets/go.png",
-      link: "https://golang.org/",
+      name: "Java",
+      icon: "/assets/tech/java.svg",
+      link: "https://www.java.com/en/",
     },
     {
-      name: "SQL",
-      icon: "/assets/sql.webp",
-      link: "https://www.w3schools.com/sql/",
+      name: "C++",
+      icon: "/assets/cpp.svg",
+      link: "https://isocpp.org/",
     },
   ],
-  frameworks: [
+  frontend: [
+    {
+      name: "React.js",
+      icon: "/assets/tech/react.svg",
+      link: "https://react.dev/",
+    },
     {
       name: "Next.js",
       icon: "/assets/tech/nextjs.svg",
       link: "https://nextjs.org/",
     },
     {
-      name: "TailwindCSS",
-      icon: "/assets/tech/tailwindcss.svg",
-      link: "https://tailwindcss.com/",
+      name: "HTML",
+      icon: "/assets/tech/html5.svg",
+      link: "https://html.spec.whatwg.org/multipage/",
+    },
+    {
+      name: "CSS",
+      icon: "/assets/tech/css3.svg",
+      link: "https://www.w3.org/Style/CSS/Overview.en.html",
+    },
+  ],
+  backend: [
+    {
+      name: "Node.js",
+      icon: "/assets/tech/nodejs.svg",
+      link: "https://nodejs.org/en",
     },
     {
       name: "Express.js",
       icon: "/assets/tech/expressjs.png",
       link: "https://expressjs.com/",
-    },
-    {
-      name: "Flask",
-      icon: "/assets/flask.png",
-      link: "https://flask.palletsprojects.com/",
     },
     {
       name: "Spring Boot",
@@ -134,61 +204,6 @@ const technologies = {
       link: "https://fastapi.tiangolo.com/",
     },
   ],
-  libraries: [
-    {
-      name: "React",
-      icon: "/assets/tech/react.svg",
-      link: "https://react.dev/",
-    },
-    {
-      name: "Node.js",
-      icon: "/assets/tech/nodejs.svg",
-      link: "https://nodejs.org/en",
-    },
-    {
-      name: "LangChain",
-      icon: "/assets/lang chain.jpg",
-      link: "https://langchain.com/",
-    },
-    {
-      name: "TensorFlow",
-      icon: "/assets/tenserflow.png",
-      link: "https://www.tensorflow.org/",
-    },
-    {
-      name: "Scikit-Learn",
-      icon: "/assets/Scikit_learn.svg",
-      link: "https://scikit-learn.org/",
-    },
-  ],
-  tools: [
-    {
-      name: "Git",
-      icon: "/assets/tech/git.svg",
-      link: "https://git-scm.com/",
-    },
-    {
-      name: "Github",
-      icon: "/assets/icons/github.svg",
-      link: "https://github.com/",
-    },
-    {
-      name: "Docker",
-      icon: "/assets/tech/docker.svg",
-      link: "https://www.docker.com/",
-    },
-    {
-      name: "Kubernetes",
-      icon: "/assets/Kubernetes.png",
-      link: "https://kubernetes.io/",
-    },
-    {
-      name: "CI/CD",
-      icon: "/assets/ci cd.webp",
-      link: "https://about.gitlab.com/topics/ci-cd/",
-    },
-  ],
- 
   databases: [
     {
       name: "MySQL",
@@ -211,21 +226,144 @@ const technologies = {
       link: "https://redis.io/",
     },
   ],
+  ai: [
+    {
+      name: "LLM Integration",
+      icon: "/assets/lang chain.jpg",
+    },
+    {
+      name: "LangChain",
+      icon: "/assets/lang chain.jpg",
+      link: "https://langchain.com/",
+    },
+    {
+      name: "LangGraph",
+      icon: "/assets/lang chain.jpg",
+    },
+    {
+      name: "Agentic Loops",
+      icon: "/assets/icons/problem-solving.svg",
+    },
+    {
+      name: "Graph Engineering",
+      icon: "/assets/icons/leadership.svg",
+    },
+    {
+      name: "RAG",
+      icon: "/assets/lang chain.jpg",
+    },
+    {
+      name: "Voice AI Systems",
+      icon: "/assets/icons/problem-solving.svg",
+    },
+    {
+      name: "Prompt Engineering",
+      icon: "/assets/icons/leadership.svg",
+    },
+    {
+      name: "Multi-Agent Orchestration",
+      icon: "/assets/icons/full-stack.svg",
+    },
+  ],
+  devops: [
+    {
+      name: "Docker",
+      icon: "/assets/tech/docker.svg",
+      link: "https://www.docker.com/",
+    },
+    {
+      name: "Kubernetes",
+      icon: "/assets/Kubernetes.png",
+      link: "https://kubernetes.io/",
+    },
+    {
+      name: "CI/CD",
+      icon: "/assets/ci cd.webp",
+      link: "https://about.gitlab.com/topics/ci-cd/",
+    },
+    {
+      name: "Linux",
+      icon: "/assets/tech/git.svg",
+    },
+    {
+      name: "Git",
+      icon: "/assets/tech/git.svg",
+      link: "https://git-scm.com/",
+    },
+    {
+      name: "Cloud Deployment (GCP, AWS)",
+      icon: "/assets/tech/docker.svg",
+    },
+  ],
+  coreCs: [
+    {
+      name: "Data Structures & Algorithms",
+    },
+    {
+      name: "OOP",
+    },
+    {
+      name: "System Design",
+    },
+    {
+      name: "Operating Systems",
+    },
+    {
+      name: "Computer Networks",
+    },
+  ],
 };
+
+const coreCompetencies = [
+  "Full-Stack Development",
+  "Backend Engineering",
+  "RESTful API Design",
+  "Scalable System Architecture",
+  "Microservices",
+  "Authentication & Authorization",
+  "High-Performance Web Applications",
+  "Database Design & Optimization",
+  "Cloud-Native Applications",
+  "DevOps Fundamentals",
+  "Agile Development",
+  "Production Debugging",
+  "Conversational AI & Voice Systems",
+  "AI System Integration",
+  "Data Structures & Algorithms",
+];
 
 const experiences = [
   {
-    title: "Software Development Intern",
-    company_name: "Alphaxine",
+    title: "Software Engineer Intern",
+    company_name: "Alphaxine Solutions",
     icon: "/assets/company/alphaxine_logo.jpeg",
     iconBg: "#E6DEDD",
     date: "March 2025 - Present",
+    location: "Kolkata, India",
+    metrics: ["400+ REST APIs", "500+ Enterprise Users", "+40% Query Latency Boost", "Multi-Tenant SaaS"],
+    techStack: ["React", "Next.js", "Spring Boot", "MySQL", "Docker", "Nginx", "Linux"],
     points: [
-      "Contributed to the official company website using Next.js and Tailwind CSS.",
-      "Developed and contributed to ERP HR and CRM sections of Alphaxine ERP system with Spring Boot backend, React frontend, and MySQL database.",
-      "Built comprehensive HR module features including master data configuration by admin for employee management, role-based access control, and automated workflow systems.",
-      "Implemented CRM functionalities with customer relationship tracking, lead management, and sales pipeline automation integrated with the existing ERP infrastructure.",
-      "Designed and developed scalable database schemas and RESTful APIs to support HR and CRM operations, ensuring seamless data flow between modules."
+      "Drove full-stack engineering across multiple client projects and the organization's official frontend web platforms, managing Linux servers, Nginx reverse proxies, and production deployments.",
+      "Orchestrated end-to-end development of a production enterprise ERP suite (HR, CRM, Projects, Ticketing, Vendor, and Finance modules) serving 500+ employees across client organizations in a multi-tenant SaaS environment.",
+      "Architected and governed 400+ secure RESTful APIs with RBAC authentication, validation pipelines, and standardized error-handling.",
+      "Optimized master data structures and relational database schemas in MySQL, improving query latency, data integrity, and scalability by 40%.",
+      "Collaborated in Agile sprints, automated CI/CD workflows, and code reviews to ensure resilient, high-uptime releases."
+    ],
+  },
+  {
+    title: "AI Engineer Intern",
+    company_name: "Vaiu AI (Vaiu.ai)",
+    icon: "/assets/company/vaiu-ai.png",
+    iconBg: "#ffffff",
+    date: "February 2026 - August 2026",
+    location: "Remote",
+    metrics: ["State-Wide Voice AI", "Low-Latency Inference", "Dynamic Agent Gen", "GCP Microservices"],
+    techStack: ["FastAPI", "LangGraph", "LiveKit", "GCP", "TTS / STT", "Voice AI", "RAG"],
+    points: [
+      "Contributed to a statewide conversational voice AI agent for Bihar Power Distribution Corporation handling thousands of high-concurrency calls daily, reducing response latency and building automated caller phone-number identification services.",
+      "Supported the architectural migration of core voice-agent services from a monolithic setup into a scalable, fault-tolerant microservices architecture on Google Cloud Platform (GCP).",
+      "Built the dynamic agent-creation engine for Ooum.ai, enabling users to generate customized voice agents by scraping website URLs, configuring prompt guidelines, and grounding with uploaded knowledge documents.",
+      "Engineered a centralized real-time operations dashboard tracking latency percentiles, concurrent call volume, and server cluster health across multi-client deployments."
     ],
   },
   {
@@ -234,11 +372,14 @@ const experiences = [
     icon: "/assets/company/gorjag.jpg",
     iconBg: "#E6DEDD",
     date: "July 2025 - September 2025",
+    location: "Remote",
+    metrics: ["20,000+ Active Users", "10+ MERN Modules", "High-Throughput APIs"],
+    techStack: ["React", "Node.js", "MongoDB", "Express", "REST APIs"],
     points: [
       "Built 10+ frontend and backend modules using React, Node.js, and MongoDB, contributing to core platform functionality.",
       "Improved application performance and user experience for a platform serving 20,000+ active users through code optimization and efficient database queries.",
       "Collaborated with cross-functional teams on MERN stack development to implement new features and resolve production issues.",
-      "Developed RESTful APIs and integrated third-party services to enhance platform capabilities and user engagement.",
+      "Developed RESTful APIs and integrated third-party services to enhance platform capabilities and user engagement."
     ],
   },
   {
@@ -247,10 +388,13 @@ const experiences = [
     icon: "/assets/company/palo-alto-logo.jpg",
     iconBg: "#E6DEDD",
     date: "August 2024 - September 2024",
+    location: "Virtual / Remote",
+    metrics: ["Zero Trust Framework", "Threat Intelligence", "Enterprise Security"],
+    techStack: ["Zero Trust", "Threat Intelligence", "Network Security", "Cloud Security"],
     points: [
-      "Applied advanced threat intelligence tools to detect and mitigate cybersecurity risks.",
+      "Applied advanced threat intelligence tools to detect and mitigate cybersecurity risks across enterprise networks.",
       "Developed hands-on expertise in network security, cloud security, and Zero Trust frameworks.",
-      "Conducted incident response analysis and formulated security strategies for enterprise environments.",
+      "Conducted incident response analysis and formulated security strategies for enterprise environments."
     ],
   },
 ];
@@ -794,6 +938,7 @@ export {
   navLinks,
   services,
   technologies,
+  coreCompetencies,
   experiences,
   testimonials,
   projects,

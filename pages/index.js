@@ -12,7 +12,6 @@ import {
 } from "@/components";
 import HeroBackground from "@/components/HeroBackground";
 import UpArrow from "./../public/assets/icons/up-arrow.svg";
-import Services from "@/components/Services";
 
 // Lazy load heavy components
 const Works = dynamic(() => import("@/components/Works"), {
@@ -76,13 +75,12 @@ function App({ loading }) {
         <HeroBackground />
         <Hero loading={loading} isMobile={isMobile} />
       </div>
-      <section className="relative z-0 flex md:flex-row flex-col-reverse w-full h-full overflow-hidden">
+      <section className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mt-28 md:mt-40 lg:mt-48 mb-16 md:mb-24 relative z-10 flex md:flex-row flex-col-reverse items-center justify-between gap-4 md:gap-6">
         <About />
         {!isMobile && <PlayerContainer isMobile={isMobile} />}
       </section>
-      <Services />
-      <Experience />
       <Tech />
+      <Experience />
       <Works />
       <Blogs />
       {/* <Feedbacks /> */}

@@ -78,8 +78,8 @@ function Contact() {
       className="xl:my-36 md:w-2/5 w-full bg-bgSecondaryDark xl:ml-36 lg:ml-16 md:ml-10 p-8 rounded-2xl shadow-md shadow-primary"
       id="contact"
     >
-      <p className={"sectionSubText text-ctnSecondaryDark"}>Get in touch</p>
-      <h3 className={"sectionHeadText text-ctnPrimaryDark"}>Contact.</h3>
+      <p className="sectionSubText">Get in touch</p>
+      <h2 className="sectionHeadText">Contact.</h2>
 
       <form
         ref={formRef}

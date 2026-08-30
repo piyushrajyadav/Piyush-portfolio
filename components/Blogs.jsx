@@ -49,12 +49,12 @@ function ArticleCard({ title, link, pubDate, thumbnail, summary }) {
         href={link || "https://medium.com/@piyushrajyadav28"}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative w-full h-full rounded-2xl md:rounded-3xl p-[1.5px] bg-gradient-to-br from-purple-400/40 via-indigo-300/20 to-teal-400/30 dark:from-purple-500/30 dark:via-white/[0.08] dark:to-teal-400/20 hover:from-purple-500 hover:to-teal-400 transition-all duration-300 hover:scale-[1.015] shadow-md shadow-purple-500/5 dark:shadow-none flex flex-col justify-between overflow-hidden cursor-pointer"
+        className="group relative w-full h-full rounded-2xl md:rounded-3xl p-[1.5px] bg-gradient-to-br from-indigo-500/30 via-slate-200/50 to-cyan-400/25 dark:from-indigo-500/30 dark:via-white/[0.08] dark:to-cyan-400/20 hover:from-indigo-500 hover:to-cyan-400 transition-all duration-300 hover:scale-[1.015] shadow-md shadow-indigo-500/5 dark:shadow-none flex flex-col justify-between overflow-hidden cursor-pointer"
       >
         <div className="relative h-full w-full rounded-2xl md:rounded-3xl p-5 md:p-6 bg-white dark:bg-[#0b0c16] flex flex-col justify-between overflow-hidden border border-slate-200/90 dark:border-white/[0.06]">
           {/* Subtle interior laser grid & ambient glow */}
-          <div className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.08] bg-[linear-gradient(to_right,#804dee_1px,transparent_1px),linear-gradient(to_bottom,#804dee_1px,transparent_1px)] bg-[size:24px_24px]" />
-          <div className="pointer-events-none absolute -inset-20 bg-gradient-to-br from-purple-500/10 via-transparent to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+          <div className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.08] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:24px_24px]" />
+          <div className="pointer-events-none absolute -inset-20 bg-gradient-to-br from-indigo-500/10 via-transparent to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
 
           <div>
             {/* Article Thumbnail */}
@@ -68,8 +68,8 @@ function ArticleCard({ title, link, pubDate, thumbnail, summary }) {
 
               {/* Floating Header Badges */}
               <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                <span className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium bg-black/70 backdrop-blur-md text-teal-300 rounded-full border border-white/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                <span className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium bg-black/70 backdrop-blur-md text-cyan-300 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                   Medium Story
                 </span>
                 <span className="px-2 py-0.5 text-[10px] font-medium bg-black/60 text-gray-300 rounded-md backdrop-blur-md">
@@ -80,7 +80,7 @@ function ArticleCard({ title, link, pubDate, thumbnail, summary }) {
 
             {/* Title & Summary */}
             <div className="mt-4">
-              <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-purple-600 dark:group-hover:text-teal-300 transition-colors duration-200 line-clamp-2">
+              <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-cyan-300 transition-colors duration-200 line-clamp-2">
                 {title}
               </h3>
               {summary && (
@@ -92,7 +92,7 @@ function ArticleCard({ title, link, pubDate, thumbnail, summary }) {
           </div>
 
           {/* Bottom Action Row */}
-          <div className="mt-4 pt-3 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-teal-400">
+          <div className="mt-4 pt-3 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-cyan-400">
             <span className="group-hover:translate-x-0.5 transition-transform duration-200">
               Read Article on Medium
             </span>
@@ -171,8 +171,8 @@ function Blogs() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <p className="sectionSubText text-slate-500 dark:text-gray-300">Engineering Insights & Research</p>
-          <h2 className="sectionHeadText text-slate-900 dark:text-white">Tech Stories & Articles.</h2>
+          <p className="sectionSubText">Engineering Insights & Research</p>
+          <h2 className="sectionHeadText">Tech Stories & Articles.</h2>
         </motion.div>
 
         {/* Description */}
@@ -194,7 +194,7 @@ function Blogs() {
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-36 bg-gradient-to-l from-bgPrimaryLight dark:from-bgPrimaryDark to-transparent z-20" />
 
         <div className="overflow-hidden w-full">
-          <div className="animate-marquee-left-fast flex gap-7 pl-6">
+          <div className="animate-marquee-left flex gap-7 pl-6">
             {[...displayArticles, ...displayArticles, ...displayArticles, ...displayArticles].map(
               (article, idx) => (
                 <ArticleCard key={`art-${idx}`} {...article} />
@@ -210,7 +210,7 @@ function Blogs() {
           href="https://medium.com/@piyushrajyadav28"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs md:text-sm font-semibold hover:bg-purple-600 dark:hover:bg-teal-400 dark:hover:text-slate-950 transition-all duration-300 shadow-md hover:scale-105 cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs md:text-sm font-semibold hover:bg-indigo-600 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-all duration-300 shadow-md hover:scale-105 cursor-pointer"
         >
           <span>Explore All Articles on Medium</span>
           <span>↗</span>

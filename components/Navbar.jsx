@@ -79,14 +79,14 @@ function Navbar() {
 						</Link>
 					</div>
 
-					<ul className="list-none hidden md:flex flex-row gap-10 items-center">
+					<ul className="list-none hidden md:flex flex-row gap-5 lg:gap-7 items-center">
 						{navLinks.map((nav) => (
 							<li
 								key={nav.id}
-								className={`dark:text-ctnPrimaryDark text-ctnPrimaryLight border-secondary transition-all duration-200 ease-in text-[18px] font-medium cursor-pointer ${
+								className={`dark:text-ctnPrimaryDark text-ctnPrimaryLight transition-all duration-200 ease-in text-[15px] lg:text-[16px] font-medium cursor-pointer ${
 									active === nav.title
-										? "text-quaternary dark:text-quaternary border-b-2 border-quaternary"
-										: "hover:text-tertiary hover:dark:text-tertiary hover:border-y-2"
+										? "text-quaternary dark:text-quaternary border-b-2 border-quaternary font-semibold"
+										: "hover:text-tertiary hover:dark:text-tertiary"
 								}`}
 								onClick={() => setActive(nav.title)}
 							>

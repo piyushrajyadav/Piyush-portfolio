@@ -26,12 +26,8 @@ function About() {
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
       >
-        <p className="sectionSubText text-slate-500 dark:text-gray-400">
-          Introduction
-        </p>
-        <h2 className="sectionHeadText text-slate-900 dark:text-white">
-          Overview.
-        </h2>
+        <p className="sectionSubText">Introduction</p>
+        <h2 className="sectionHeadText">Overview.</h2>
       </motion.div>
 
       {/* Main Narrative & Storytelling */}
@@ -45,7 +41,7 @@ function About() {
         {/* Story Paragraphs */}
         <div className="space-y-4 font-normal">
           <p>
-            Hello! I&apos;m <span className="font-bold text-slate-900 dark:text-white">Piyush Yadav</span>, a Software Engineer & AI Builder with a relentless drive for transforming complex ideas into <span className="text-purple-600 dark:text-teal-400 font-semibold">high-performance digital software</span>. I live to build—whether it&apos;s crafting resilient distributed backends or engineering state-of-the-art autonomous AI systems.
+            Hello! I&apos;m <span className="font-bold text-slate-900 dark:text-white">Piyush Yadav</span>, a Software Engineer & AI Builder with a relentless drive for transforming complex ideas into <span className="text-indigo-600 dark:text-cyan-400 font-semibold">high-performance digital software</span>. I live to build—whether it&apos;s crafting resilient distributed backends or engineering state-of-the-art autonomous AI systems.
           </p>
 
           <p>
@@ -53,7 +49,7 @@ function About() {
           </p>
 
           <p>
-            On the AI frontier, building cutting-edge intelligence is what excites me most. I have built and shipped <span className="font-semibold text-slate-800 dark:text-gray-200">dozens of AI-native applications</span>—from <span className="font-semibold text-purple-600 dark:text-teal-400">statewide conversational voice agents handling thousands of daily calls</span> on GCP using <strong>LiveKit, LangGraph, and FastAPI</strong>, to autonomous multi-agent swarms, grounded RAG search engines, and automated voice-agent creation platforms.
+            On the AI frontier, building cutting-edge intelligence is what excites me most. I have built and shipped <span className="font-semibold text-slate-800 dark:text-gray-200">dozens of AI-native applications</span>—from <span className="font-semibold text-indigo-600 dark:text-cyan-400">statewide conversational voice agents handling thousands of daily calls</span> on GCP using <strong>LiveKit, LangGraph, and FastAPI</strong>, to autonomous multi-agent swarms, grounded RAG search engines, and automated voice-agent creation platforms.
           </p>
 
           <p>
@@ -68,12 +64,12 @@ function About() {
             {/* Email Chip with Copy Action */}
             <button
               onClick={handleCopyEmail}
-              className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100/90 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.1] hover:border-purple-500 text-xs sm:text-sm font-medium text-slate-800 dark:text-gray-200 transition-all duration-200 cursor-pointer shadow-2xs"
+              className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100/90 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.1] hover:border-indigo-500 text-xs sm:text-sm font-medium text-slate-800 dark:text-gray-200 transition-all duration-200 cursor-pointer shadow-2xs"
               title="Click to copy email"
             >
-              <EmailIcon className="w-4 h-4 text-purple-600 dark:text-teal-400" />
+              <EmailIcon className="w-4 h-4 text-indigo-600 dark:text-cyan-400" />
               <span className="truncate max-w-[190px] sm:max-w-none">piyushyadavrajyadav@gmail.com</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-purple-100 dark:bg-white/10 text-purple-700 dark:text-teal-300 ml-1 shrink-0">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-indigo-100 dark:bg-white/10 text-indigo-700 dark:text-cyan-300 ml-1 shrink-0">
                 {copied ? "✓ Copied!" : "Copy"}
               </span>
             </button>
@@ -85,7 +81,7 @@ function About() {
                   href={social.link}
                   target="_blank"
                   key={social.id}
-                  className="w-9 h-9 rounded-xl bg-slate-100/90 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.1] hover:border-purple-500 flex items-center justify-center text-slate-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-teal-300 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs cursor-pointer"
+                  className="w-9 h-9 rounded-xl bg-slate-100/90 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.1] hover:border-indigo-500 flex items-center justify-center text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-cyan-300 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs cursor-pointer"
                   title={social.id}
                 >
                   <div className="w-4 h-4 flex items-center justify-center">
@@ -96,20 +92,20 @@ function About() {
             </div>
           </div>
 
-          {/* Row 2: Distinct, Eye-Catching Emerald-Cyan Shimmer Resume CTA Button */}
+          {/* Row 2: Distinct, Eye-Catching Cyber-Indigo / Cyan Shimmer Resume CTA Button */}
           <div className="w-fit pt-1">
             <Link
               href="document/Piyush_Yadav_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="relative group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:via-teal-400 hover:to-cyan-400 text-slate-950 dark:text-slate-950 font-bold text-xs sm:text-sm shadow-md shadow-teal-500/30 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer overflow-hidden select-none border border-teal-300/40"
+              className="relative group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:via-indigo-400 hover:to-cyan-400 text-white font-bold text-xs sm:text-sm shadow-md shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/35 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer overflow-hidden select-none border border-indigo-300/30"
             >
               {/* Shimmer sweep effect on hover */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-700 transition-transform bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-700 transition-transform bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
               {/* Document icon */}
               <svg
-                className="w-4 h-4 text-slate-950 shrink-0"
+                className="w-4 h-4 text-white shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -124,7 +120,7 @@ function About() {
 
               <span>View Full Resume</span>
 
-              <span className="text-slate-950 font-black transition-transform duration-200 group-hover:translate-x-1">
+              <span className="text-white font-black transition-transform duration-200 group-hover:translate-x-1">
                 →
               </span>
             </Link>

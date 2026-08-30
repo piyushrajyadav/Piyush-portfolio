@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -7,158 +8,268 @@ import { fadeIn, textVariant } from "../utils/motion";
 import truncateText from "@/utils/truncate";
 import GithubLogo from "./../public/assets/icons/github.svg";
 import RocketLogo from "./../public/assets/icons/rocket.svg";
+import { MovingBorderCard } from "@/components/ui/moving-border";
 
+/* External Link Arrow SVG */
+function ExternalLinkIcon({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  );
+}
+
+/* Detailed Project Deep-Dive Modal (Portal Mounted Globally to Body) */
+function ProjectModal({ project, onClose }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  if (!mounted || !project) return null;
+
+  const hasLiveLink = Boolean(project.deployed_link && project.deployed_link.trim() !== "");
+  const hasSourceLink = Boolean(project.source_code_link && project.source_code_link.trim() !== "");
+
+  return createPortal(
+    <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      {/* Dim & Blur Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
+      />
+
+      {/* Modal Dialog Box */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="relative w-full max-w-xl max-h-[85vh] bg-white dark:bg-[#0c0e1a] rounded-2xl md:rounded-3xl border border-slate-200 dark:border-white/[0.15] shadow-2xl overflow-hidden flex flex-col z-10 my-auto"
+      >
+        {/* Fixed Header with Category & Prominent Close (X) Button */}
+        <div className="sticky top-0 z-20 flex items-center justify-between px-5 py-3.5 bg-white/95 dark:bg-[#0c0e1a]/95 backdrop-blur-md border-b border-slate-200 dark:border-white/[0.08]">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="px-2.5 py-0.5 text-xs font-mono font-semibold uppercase tracking-wider bg-slate-100 dark:bg-white/[0.06] text-indigo-600 dark:text-cyan-400 rounded-md border border-slate-200 dark:border-white/[0.08]">
+              {project.category}
+            </span>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/[0.08] hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-gray-200 flex items-center justify-center transition-colors cursor-pointer border border-slate-200 dark:border-white/10"
+            title="Close details"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Scrollable Content Body */}
+        <div className="overflow-y-auto p-5 sm:p-6 space-y-4">
+          {/* Project Image Frame */}
+          <div className="relative w-full h-44 sm:h-52 rounded-xl overflow-hidden bg-slate-100 dark:bg-black/60 border border-slate-200 dark:border-white/[0.08]">
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill={true}
+              sizes="(max-width: 768px) 100vw, 600px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+          </div>
+
+          {/* Title */}
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug font-mono">
+              {project.name}
+            </h2>
+
+            {/* In-depth Description */}
+            <p className="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed font-normal">
+              {project.description}
+            </p>
+          </div>
+
+          {/* Technology Badges */}
+          <div className="pt-3 border-t border-slate-200 dark:border-white/[0.08]">
+            <h4 className="text-[11px] font-mono font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+              Technologies & Stack
+            </h4>
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags?.map((tag) => (
+                <span
+                  key={`${project.name}-${tag.name}`}
+                  className="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] text-slate-800 dark:text-gray-200"
+                >
+                  #{tag.name}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="pt-3 border-t border-slate-200 dark:border-white/[0.08] flex flex-wrap items-center justify-end gap-2.5">
+            {hasSourceLink && (
+              <a
+                href={project.source_code_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-white/[0.08] hover:bg-slate-200 dark:hover:bg-white/15 text-slate-800 dark:text-white text-xs font-semibold border border-slate-200 dark:border-white/10 transition-all shadow-xs cursor-pointer"
+              >
+                <div className="w-3.5 h-3.5 relative shrink-0">
+                  <GithubLogo className="w-full h-full" />
+                </div>
+                <span>View Source</span>
+                <ExternalLinkIcon className="w-3 h-3 opacity-70" />
+              </a>
+            )}
+
+            {hasLiveLink && (
+              <a
+                href={project.deployed_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white text-xs font-bold shadow-md shadow-indigo-500/25 transition-all cursor-pointer"
+              >
+                <div className="w-3.5 h-3.5 relative shrink-0">
+                  <RocketLogo className="w-full h-full" />
+                </div>
+                <span>Launch Live App</span>
+                <ExternalLinkIcon className="w-3 h-3 text-white/80" />
+              </a>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    </div>,
+    document.body
+  );
+}
+
+/* Compact Futuristic Project Card Component */
 function FuturisticProjectCard({
-  name,
-  description,
-  tags,
-  image,
-  source_code_link,
-  deployed_link,
-  featured,
-  category,
+  project,
+  onSelectProject,
+  isGrid = false,
 }) {
-  const CHAR_LIMIT = 170;
-  const hasLiveLink = Boolean(deployed_link && deployed_link.trim() !== "");
-  const hasSourceLink = Boolean(source_code_link && source_code_link.trim() !== "");
+  const { name, description, tags, image, category } = project;
+  const CHAR_LIMIT = 85;
 
   return (
-    <div className="w-full h-full min-h-[470px] flex flex-col select-none">
-      <div className="group relative w-full h-full rounded-2xl md:rounded-3xl p-[1.5px] bg-gradient-to-b from-purple-500/30 via-slate-200/50 to-teal-400/30 dark:from-purple-500/40 dark:via-white/[0.06] dark:to-teal-400/20 hover:from-purple-500 hover:via-indigo-500 hover:to-teal-400 transition-all duration-500 shadow-md hover:shadow-[0_0_30px_-5px_rgba(128,77,238,0.35)] flex flex-col justify-between overflow-hidden">
-        {/* Card Interior */}
-        <div className="relative h-full w-full rounded-2xl md:rounded-3xl p-5 md:p-6 bg-white/95 dark:bg-[#090a12]/95 backdrop-blur-2xl flex flex-col justify-between overflow-hidden border border-slate-200/90 dark:border-white/[0.08]">
-          {/* Cyber Corner Crosshairs */}
-          <span className="pointer-events-none absolute top-2 left-2 text-[10px] text-purple-400/40 dark:text-purple-400/30 font-mono select-none">
-            ⌜
-          </span>
-          <span className="pointer-events-none absolute top-2 right-2 text-[10px] text-teal-400/40 dark:text-teal-400/30 font-mono select-none">
-            ⌝
-          </span>
-          <span className="pointer-events-none absolute bottom-2 left-2 text-[10px] text-purple-400/40 dark:text-purple-400/30 font-mono select-none">
-            ⌞
-          </span>
-          <span className="pointer-events-none absolute bottom-2 right-2 text-[10px] text-teal-400/40 dark:text-teal-400/30 font-mono select-none">
-            ⌟
-          </span>
-
+    <div
+      onClick={() => onSelectProject(project)}
+      className={`${
+        isGrid ? "w-full" : "w-[300px] sm:w-[330px] md:w-[350px] flex-shrink-0"
+      } h-[330px] flex flex-col select-none cursor-pointer group`}
+    >
+      <MovingBorderCard
+        borderRadius="1.5rem"
+        duration={8000}
+        borderClassName="h-32 w-32 opacity-[0.7] group-hover:opacity-[0.95] bg-[radial-gradient(#6366f1_40%,transparent_60%)]"
+        containerClassName="w-full h-full"
+      >
+        <div className="relative h-full w-full rounded-2xl md:rounded-3xl p-4 bg-white/95 dark:bg-[#0c0e1a]/95 backdrop-blur-2xl flex flex-col justify-between overflow-hidden border border-slate-200/90 dark:border-white/[0.08] group-hover:border-indigo-500/40 transition-colors">
           {/* Ambient Glow Spotlight on Hover */}
-          <div className="pointer-events-none absolute -inset-24 bg-gradient-to-br from-purple-500/10 via-transparent to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl" />
+          <div className="pointer-events-none absolute -inset-24 bg-gradient-to-br from-indigo-500/10 via-transparent to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-2xl" />
 
           <div>
-            {/* Top Bar: Terminal Status Lights + Category Badge */}
-            <div className="relative z-10 flex items-center justify-between gap-2 mb-3.5 pb-2.5 border-b border-slate-200/80 dark:border-white/[0.06]">
+            {/* Top Bar: Terminal Lights + Category */}
+            <div className="relative z-10 flex items-center justify-between gap-2 mb-2 pb-2 border-b border-slate-200/80 dark:border-white/[0.06]">
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-rose-500/80 group-hover:bg-rose-500 transition-colors" />
-                <span className="w-2 h-2 rounded-full bg-amber-500/80 group-hover:bg-amber-500 transition-colors" />
                 <span className="w-2 h-2 rounded-full bg-emerald-500/80 group-hover:bg-emerald-500 transition-colors animate-pulse" />
-                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-gray-400 ml-1.5 uppercase tracking-wider">
+                <span className="text-[10px] font-mono font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">
                   {category}
                 </span>
               </div>
 
-              {featured && (
-                <span className="flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full shadow-xs">
-                  ⭐ Featured
-                </span>
-              )}
+              <span className="text-[11px] font-semibold text-indigo-600 dark:text-cyan-400 group-hover:translate-x-0.5 transition-transform font-mono">
+                Details →
+              </span>
             </div>
 
-            {/* Clean Project Image Frame (uncluttered) */}
-            <div className="relative w-full h-[185px] overflow-hidden rounded-xl bg-slate-100 dark:bg-black/60 border border-slate-200 dark:border-white/[0.1] group-hover:border-purple-400/40 transition-colors">
-              <div className="w-full h-full relative transition-transform duration-700 ease-out group-hover:scale-105">
-                <Image
-                  src={image}
-                  alt={name}
-                  fill={true}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Gradient Scrim */}
+            {/* Project Thumbnail */}
+            <div className="relative w-full h-[120px] overflow-hidden rounded-xl bg-slate-100 dark:bg-black/60 border border-slate-200 dark:border-white/[0.08] group-hover:border-indigo-400/40 transition-colors">
+              <Image
+                src={image}
+                alt={name}
+                fill={true}
+                sizes="(max-width: 768px) 100vw, 350px"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Title & Description */}
-            <div className="mt-3.5">
-              <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-purple-600 dark:group-hover:text-teal-300 transition-colors duration-200 line-clamp-1">
+            {/* Title & Short Teaser */}
+            <div className="mt-2.5">
+              <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-cyan-300 transition-colors duration-200 truncate font-mono">
                 {name}
               </h3>
-              <p className="mt-1.5 text-xs text-slate-600 dark:text-gray-300 leading-relaxed font-normal line-clamp-2">
+              <p className="mt-1 text-xs text-slate-600 dark:text-gray-300 leading-relaxed font-normal line-clamp-2">
                 {truncateText(description, CHAR_LIMIT)}
               </p>
             </div>
           </div>
 
-          {/* Bottom Section: Tags & Dedicated GitHub / Live Action Buttons */}
-          <div className="relative z-10 mt-3 pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex flex-col gap-3">
-            {/* Tech Badges */}
-            <div className="flex flex-wrap gap-1.5">
-              {tags?.slice(0, 4).map((tag) => (
+          {/* Bottom Area: Tags */}
+          <div className="relative z-10 mt-2 pt-2 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between gap-1.5">
+            <div className="flex flex-wrap gap-1">
+              {tags?.slice(0, 3).map((tag) => (
                 <span
                   key={`${name}-${tag.name}`}
-                  className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/[0.08] text-slate-700 dark:text-gray-300"
+                  className="text-[9px] font-medium px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/[0.08] text-slate-700 dark:text-gray-300"
                 >
                   #{tag.name}
                 </span>
               ))}
             </div>
 
-            {/* Bottom Row: Direct Clickable GitHub & Live Action Buttons */}
-            <div className="flex items-center justify-between gap-2 pt-1">
-              {hasSourceLink ? (
-                <a
-                  href={source_code_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-white/[0.08] hover:bg-purple-600 dark:hover:bg-purple-600 text-white text-xs font-semibold border border-slate-800 dark:border-white/10 hover:border-purple-400 transition-all duration-200 shadow-xs hover:scale-105 cursor-pointer"
-                  title="View GitHub Repository"
-                >
-                  <div className="w-3.5 h-3.5 relative shrink-0">
-                    <GithubLogo className="w-full h-full" />
-                  </div>
-                  <span>GitHub</span>
-                </a>
-              ) : (
-                <span className="text-gray-400 text-[11px] font-mono">Proprietary</span>
-              )}
-
-              {hasLiveLink ? (
-                <a
-                  href={deployed_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 text-xs font-bold shadow-xs hover:shadow-teal-500/20 hover:scale-105 transition-all duration-200 cursor-pointer"
-                  title="Open Live Application"
-                >
-                  <div className="w-3.5 h-3.5 relative shrink-0">
-                    <RocketLogo className="w-full h-full" />
-                  </div>
-                  <span>Live App</span>
-                </a>
-              ) : (
-                <span className="text-slate-400 dark:text-gray-500 text-[10px] font-mono">
-                  CLI / Service
-                </span>
-              )}
-            </div>
+            <span className="text-[10px] text-slate-400 dark:text-gray-500 font-mono">
+              Click to view
+            </span>
           </div>
         </div>
-      </div>
+      </MovingBorderCard>
     </div>
   );
 }
 
 function Works() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedProject, setSelectedProject] = useState(null);
 
   // Strictly filter only projects that belong to the active category
   const filteredProjects =
     activeCategory === "all"
       ? projects
-      : projects.filter((project) => project.category === activeCategory);
+      : projects.filter((item) => item.category === activeCategory);
 
   // If more than 3 projects, we enable moving marquee; if <= 3 projects, we show a clean static grid
   const shouldMove = filteredProjects.length > 3;
@@ -171,7 +282,10 @@ function Works() {
     : filteredProjects;
 
   return (
-    <section className="w-full my-16 md:my-28 relative z-10 overflow-hidden" id="projects">
+    <section
+      className="w-full my-16 md:my-28 relative z-10 overflow-hidden"
+      id="works"
+    >
       {/* Section Header */}
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-8">
         <motion.div
@@ -180,22 +294,22 @@ function Works() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <p className="sectionSubText text-slate-500 dark:text-gray-300">Selected Work & Innovations</p>
-          <h2 className="sectionHeadText text-slate-900 dark:text-white">Featured Projects.</h2>
+          <p className="sectionSubText">My Work</p>
+          <h2 className="sectionHeadText">Projects.</h2>
         </motion.div>
 
-        {/* Description */}
+        {/* Section Subtext */}
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className="mt-3 text-sm md:text-base text-slate-600 dark:text-gray-300 max-w-3xl leading-relaxed"
+          className="mt-3 text-sm md:text-base text-slate-600 dark:text-gray-300 max-w-3xl leading-relaxed font-normal"
         >
-          Explore production-grade multi-agent AI frameworks, Kubernetes deployment engines, custom Git internal architectures, and published packages.
+          Explore a curated collection of production systems, AI-native platforms, and high-throughput backends. Click any card to read its full story, architecture, and live deployment.
         </motion.p>
 
-        {/* Category Tabs */}
+        {/* Category Filter Tabs */}
         <div className="flex flex-wrap gap-2.5 p-1.5 rounded-2xl bg-slate-200/70 dark:bg-white/[0.04] border border-slate-300/80 dark:border-white/[0.08] backdrop-blur-xl w-fit mt-8">
           {projectCategories.map((category) => {
             const isActive = activeCategory === category.id;
@@ -204,9 +318,9 @@ function Works() {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-medium transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-white dark:bg-purple-600 text-purple-700 dark:text-white shadow-md font-semibold scale-[1.02]"
+                    ? "bg-white dark:bg-indigo-600 text-indigo-700 dark:text-white shadow-md font-semibold scale-[1.02]"
                     : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
@@ -234,14 +348,14 @@ function Works() {
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-36 bg-gradient-to-l from-bgPrimaryLight dark:from-bgPrimaryDark to-transparent z-20" />
 
             <div className="overflow-hidden w-full">
-              <div className="animate-marquee-left flex gap-7 pl-6">
+              <div className="animate-marquee-left-projects flex gap-7 pl-6">
                 {marqueeItems.map((project, idx) => (
-                  <div
+                  <FuturisticProjectCard
                     key={`${project.name}-${idx}`}
-                    className="w-[330px] sm:w-[370px] md:w-[400px] flex-shrink-0"
-                  >
-                    <FuturisticProjectCard {...project} />
-                  </div>
+                    project={project}
+                    onSelectProject={setSelectedProject}
+                    isGrid={false}
+                  />
                 ))}
               </div>
             </div>
@@ -259,11 +373,25 @@ function Works() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {filteredProjects.map((project) => (
                 <div key={project.name} className="w-full">
-                  <FuturisticProjectCard {...project} />
+                  <FuturisticProjectCard
+                    project={project}
+                    onSelectProject={setSelectedProject}
+                    isGrid={true}
+                  />
                 </div>
               ))}
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Project Deep-Dive Modal Overlay (Portal Mounted) */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
         )}
       </AnimatePresence>
     </section>

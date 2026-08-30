@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -106,31 +108,25 @@ svg {
 }
 
 .violet-gradient {
-  background: #804dee;
-  background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
+  background: #6366f1;
+  background: linear-gradient(-90deg, #6366f1 0%, rgba(99, 102, 241, 0) 100%);
   background: -webkit-linear-gradient(
     -90deg,
-    #804dee 0%,
-    rgba(60, 51, 80, 0) 100%
+    #6366f1 0%,
+    rgba(99, 102, 241, 0) 100%
   );
 }
 
 .green-pink-gradient {
-  background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: #06b6d4;
+  background: linear-gradient(90.13deg, #06b6d4 1.9%, #6366f1 97.5%);
+  background: -webkit-linear-gradient(-90.13deg, #06b6d4 1.9%, #6366f1 97.5%);
 }
 
 .black-gradient {
   background: #000000;
   background: -webkit-linear-gradient(to right, #434343, #000000);
   background: linear-gradient(to right, #434343, #000000);
-}
-
-.green-pink-gradient {
-  background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
 }
 
 .orange-text-gradient {
@@ -142,26 +138,25 @@ svg {
 }
 
 .green-text-gradient {
-  background: #11998e;
-  background: -webkit-linear-gradient(to top, #11998e, #38ef7d);
-  background: linear-gradient(to top, #11998e, #38ef7d);
+  background: #059669;
+  background: -webkit-linear-gradient(to top, #059669, #34d399);
+  background: linear-gradient(to top, #059669, #34d399);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .blue-text-gradient {
-  /* background: -webkit-linear-gradient(#eee, #333); */
-  background: #56ccf2;
-  background: -webkit-linear-gradient(to top, #2f80ed, #56ccf2);
-  background: linear-gradient(to top, #2f80ed, #56ccf2);
+  background: #38bdf8;
+  background: -webkit-linear-gradient(to top, #2563eb, #38bdf8);
+  background: linear-gradient(to top, #2563eb, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .pink-text-gradient {
-  background: #ec008c;
-  background: -webkit-linear-gradient(to top, #ec008c, #fc6767);
-  background: linear-gradient(to top, #ec008c, #fc6767);
+  background: #8b5cf6;
+  background: -webkit-linear-gradient(to top, #6366f1, #a855f7);
+  background: linear-gradient(to top, #6366f1, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -190,38 +185,38 @@ svg {
 
 @keyframes lights {
   0% {
-    text-shadow: 0 0 1em rgba(128, 77, 238, 0.1),
-      0 0 0.125em rgba(128, 77, 238, 0.2),
-      -1em -0.125em 0.5em rgba(128, 77, 238, 0),
-      1em 0.125em 0.5em rgba(128, 77, 238, 0);
+    text-shadow: 0 0 1em rgba(99, 102, 241, 0.1),
+      0 0 0.125em rgba(99, 102, 241, 0.2),
+      -1em -0.125em 0.5em rgba(99, 102, 241, 0),
+      1em 0.125em 0.5em rgba(99, 102, 241, 0);
   }
 
   30% {
-    text-shadow: 0 0 1em rgba(128, 77, 238, 0.4),
-      0 0 0.125em rgba(128, 77, 238, 0.4),
-      -0.5em -0.125em 0.25em rgba(128, 77, 238, 0.1),
-      0.5em 0.125em 0.25em rgba(128, 77, 238, 0.3);
+    text-shadow: 0 0 1em rgba(99, 102, 241, 0.35),
+      0 0 0.125em rgba(6, 182, 212, 0.35),
+      -0.5em -0.125em 0.25em rgba(99, 102, 241, 0.1),
+      0.5em 0.125em 0.25em rgba(6, 182, 212, 0.25);
   }
 
   40% {
-    text-shadow: 0 0 1em rgba(128, 77, 238, 0.4),
-      0 0 0.125em rgba(128, 77, 238, 0.4),
-      -0.25em -0.125em 0.125em rgba(128, 77, 238, 0.1),
-      0.25em 0.125em 0.125em rgba(128, 77, 238, 0.3);
+    text-shadow: 0 0 1em rgba(99, 102, 241, 0.35),
+      0 0 0.125em rgba(6, 182, 212, 0.35),
+      -0.25em -0.125em 0.125em rgba(99, 102, 241, 0.1),
+      0.25em 0.125em 0.125em rgba(6, 182, 212, 0.25);
   }
 
   70% {
-    text-shadow: 0 0 1em rgba(128, 77, 238, 0.4),
-      0 0 0.125em rgba(128, 77, 238, 0.4),
-      0.5em -0.125em 0.25em rgba(128, 77, 238, 0.1),
-      -0.5em 0.125em 0.25em rgba(128, 77, 238, 0.4);
+    text-shadow: 0 0 1em rgba(99, 102, 241, 0.35),
+      0 0 0.125em rgba(6, 182, 212, 0.35),
+      0.5em -0.125em 0.25em rgba(99, 102, 241, 0.1),
+      -0.5em 0.125em 0.25em rgba(6, 182, 212, 0.3);
   }
 
   100% {
-    text-shadow: 0 0 1em rgba(128, 77, 238, 0.1),
-      0 0 0.125em rgba(128, 77, 238, 0.2),
-      1em -0.125em 0.5em rgba(128, 77, 238, 0),
-      -1em 0.125em 0.5em rgba(128, 77, 238, 0);
+    text-shadow: 0 0 1em rgba(99, 102, 241, 0.1),
+      0 0 0.125em rgba(99, 102, 241, 0.2),
+      1em -0.125em 0.5em rgba(99, 102, 241, 0),
+      -1em 0.125em 0.5em rgba(99, 102, 241, 0);
   }
 }
 
@@ -449,9 +444,9 @@ svg {
   height: 45px;
   border-radius: 100px;
   position: absolute;
-  background-color: #804dee;
-  opacity: 0.25;
-  box-shadow: 0 0 50px #804dee;
+  background-color: #6366f1;
+  opacity: 0.2;
+  box-shadow: 0 0 50px #6366f1;
   filter: blur(14px);
   transform: rotate(-40deg);
   top: 10px;
@@ -462,7 +457,7 @@ svg {
 .moving-dot-card .text {
   font-weight: 800;
   font-size: 2.75rem;
-  background: linear-gradient(45deg, #a855f7 0%, #ffffff 50%, #00cea8 100%);
+  background: linear-gradient(45deg, #818cf8 0%, #ffffff 50%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
@@ -470,7 +465,7 @@ svg {
 
 .moving-dot-card .label {
   font-size: 0.875rem;
-  color: #9ca3af;
+  color: #94a3b8;
   font-weight: 500;
   margin-top: 0.35rem;
 }
@@ -485,28 +480,28 @@ svg {
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(128, 77, 238, 0.4) 30%, rgba(0, 206, 168, 0.3) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.4) 30%, rgba(6, 182, 212, 0.3) 70%, transparent 100%);
 }
 .moving-dot-card .bottoml {
   bottom: 0;
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(128, 77, 238, 0.2) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.2) 50%, transparent 100%);
 }
 .moving-dot-card .leftl {
   left: 0;
   top: 0;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(128, 77, 238, 0.3) 30%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.3) 30%, transparent 100%);
 }
 .moving-dot-card .rightl {
   right: 0;
   top: 0;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 206, 168, 0.3) 70%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(6, 182, 212, 0.3) 70%, transparent 100%);
 }
 
 /* Hardware-Accelerated Continuous Marquee with Pause on Hover */
@@ -531,25 +526,41 @@ svg {
 .animate-marquee-left {
   display: flex;
   width: max-content;
-  animation: marquee-left 55s linear infinite;
+  animation: marquee-left 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left-projects {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 95s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left-blogs {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 70s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
-  animation: marquee-right 58s linear infinite;
+  animation: marquee-right 60s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-left-fast {
   display: flex;
   width: max-content;
-  animation: marquee-left 48s linear infinite;
+  animation: marquee-left 60s linear infinite;
   will-change: transform;
 }
 
 .marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-left-projects,
+.marquee-container:hover .animate-marquee-left-blogs,
 .marquee-container:hover .animate-marquee-right,
 .marquee-container:hover .animate-marquee-left-fast {
   animation-play-state: paused !important;

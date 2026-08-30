@@ -4,15 +4,6 @@ export function GlowingShadow({ children, className = "" }) {
   return (
     <div className={`relative w-full group ${className}`}>
       <style jsx>{`
-        @keyframes rotate-hue {
-          0% {
-            filter: hue-rotate(0deg);
-          }
-          100% {
-            filter: hue-rotate(360deg);
-          }
-        }
-
         .glowing-shadow-wrapper {
           position: relative;
           width: 100%;
@@ -23,25 +14,24 @@ export function GlowingShadow({ children, className = "" }) {
         .glowing-shadow-wrapper::before {
           content: "";
           position: absolute;
-          inset: -2px;
-          border-radius: 1.6rem;
+          inset: -1px;
+          border-radius: 1.55rem;
           background: linear-gradient(
             135deg,
-            #804dee 0%,
-            #00cea8 50%,
-            #804dee 100%
+            rgba(99, 102, 241, 0.35) 0%,
+            rgba(6, 182, 212, 0.2) 50%,
+            rgba(99, 102, 241, 0.35) 100%
           );
           z-index: 0;
-          opacity: 0.6;
-          filter: blur(12px);
+          opacity: 0.4;
+          filter: blur(10px);
           transition: all 0.4s ease;
-          animation: rotate-hue 6s linear infinite;
         }
 
         .glowing-shadow-wrapper:hover::before {
-          opacity: 0.95;
-          filter: blur(20px);
-          inset: -4px;
+          opacity: 0.8;
+          filter: blur(16px);
+          inset: -2px;
         }
 
         .glowing-shadow-inner {

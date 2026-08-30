@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 import Mountain1 from "../public/assets/background/mountain1.svg";
 import Mountain2 from "../public/assets/background/mountain2.svg";
@@ -8,34 +9,48 @@ import Mountain5 from "../public/assets/background/mountain5.svg";
 import HeroSvg from "../public/assets/background/hero-wave.svg";
 
 function HeroBackground() {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { margin: "200px" });
+
   return (
-    <div className="absolute top-0 w-full h-[100svh] bg-gradient-to-b from-opacity-[6.33%] dark:from-[#322d6d] from-[#b0afb1] to-opacity-[39.13%] dark:to-[#663182] to-[#51afda] overflow-hidden">
+    <div
+      ref={containerRef}
+      className="absolute top-0 w-full h-[100svh] bg-gradient-to-b from-opacity-[6.33%] dark:from-[#322d6d] from-[#b0afb1] to-opacity-[39.13%] dark:to-[#663182] to-[#51afda] overflow-hidden pointer-events-none"
+    >
       {/* Mountain 1 - Continuous left movement with loop */}
       <motion.div
-        animate={{
-          x: [0, -100, 0],
-        }}
+        animate={
+          isInView
+            ? {
+                x: [0, -100, 0],
+              }
+            : { x: 0 }
+        }
         transition={{
           duration: 20,
           repeat: Infinity,
           ease: "linear",
         }}
-        className="absolute w-full h-[446px] top-[170px]"
+        className="absolute w-full h-[446px] top-[170px] will-change-transform"
       >
         <Mountain1 className="w-full h-full" />
       </motion.div>
 
       {/* Mountain 2 - Continuous right movement with loop */}
       <motion.div
-        animate={{
-          x: [0, 100, 0],
-        }}
+        animate={
+          isInView
+            ? {
+                x: [0, 100, 0],
+              }
+            : { x: 0 }
+        }
         transition={{
           duration: 15,
           repeat: Infinity,
           ease: "linear",
         }}
-        className="absolute w-full h-[464px] top-[160px]"
+        className="absolute w-full h-[464px] top-[160px] will-change-transform"
       >
         <Mountain2 className="w-full h-full" />
       </motion.div>
@@ -46,20 +61,25 @@ function HeroBackground() {
           src={"/assets/background/blur-layer.png"}
           alt="blur-layer"
           fill={true}
+          priority={true}
         />
       </div>
 
       {/* Mountain 3 - Slower continuous movement */}
       <motion.div
-        animate={{
-          x: [0, -50, 0],
-        }}
+        animate={
+          isInView
+            ? {
+                x: [0, -50, 0],
+              }
+            : { x: 0 }
+        }
         transition={{
           duration: 25,
           repeat: Infinity,
           ease: "linear",
         }}
-        className="absolute w-full h-[408px] top-[347px]"
+        className="absolute w-full h-[408px] top-[347px] will-change-transform"
       >
         <Mountain3 className="w-full h-full" />
       </motion.div>

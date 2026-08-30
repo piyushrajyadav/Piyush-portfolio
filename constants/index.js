@@ -19,6 +19,10 @@ const navLinks = [
     title: "Work",
   },
   {
+    id: "opensource",
+    title: "Open Source",
+  },
+  {
     id: "skills",
     title: "Skills",
   },
@@ -56,7 +60,7 @@ const services = [
       { name: "Multi-Agent Orchestration", icon: "/assets/icons/full-stack.svg" },
       { name: "Python", icon: "/assets/tech/python.svg" },
     ],
-    accent: "from-purple-500 via-indigo-500 to-teal-400",
+    accent: "from-indigo-500 via-indigo-400 to-cyan-400",
   },
   {
     id: "software-developer",
@@ -76,7 +80,7 @@ const services = [
       { name: "System Design", icon: "/assets/icons/leadership.svg" },
       { name: "OS & Networks", icon: "/assets/tech/git.svg" },
     ],
-    accent: "from-indigo-500 via-purple-500 to-cyan-400",
+    accent: "from-indigo-500 via-cyan-400 to-blue-500",
   },
   {
     id: "frontend-developer",
@@ -94,7 +98,7 @@ const services = [
       { name: "HTML5", icon: "/assets/tech/html5.svg" },
       { name: "CSS3", icon: "/assets/tech/css3.svg" },
     ],
-    accent: "from-cyan-400 via-blue-500 to-purple-500",
+    accent: "from-cyan-400 via-sky-500 to-indigo-500",
   },
   {
     id: "backend-developer",
@@ -114,7 +118,7 @@ const services = [
       { name: "MongoDB", icon: "/assets/tech/mongodb.svg" },
       { name: "Redis", icon: "/assets/redis.svg" },
     ],
-    accent: "from-purple-500 via-pink-500 to-rose-400",
+    accent: "from-indigo-500 via-blue-500 to-cyan-400",
   },
   {
     id: "devops-engineer",
@@ -128,12 +132,11 @@ const services = [
       { name: "Docker", icon: "/assets/tech/docker.svg" },
       { name: "Kubernetes", icon: "/assets/Kubernetes.png" },
       { name: "CI/CD", icon: "/assets/ci cd.webp" },
-      { name: "AWS", icon: "/assets/tech/docker.svg" },
-      { name: "GCP", icon: "/assets/tech/docker.svg" },
+      { name: "AWS", icon: "/assets/tech/aws.svg" },
       { name: "Linux", icon: "/assets/tech/git.svg" },
       { name: "Git", icon: "/assets/tech/git.svg" },
     ],
-    accent: "from-teal-400 via-emerald-500 to-cyan-400",
+    accent: "from-cyan-400 via-teal-500 to-indigo-500",
   },
 ];
 
@@ -919,6 +922,136 @@ const socials = [
   },
 ];
 
+const openSourceCategories = [
+  { id: "all", label: "All Repositories" },
+  { id: "nodejs", label: "Node.js" },
+  { id: "kubernetes", label: "Kubernetes" },
+  { id: "kirocrew", label: "Kiro by AWS" },
+];
+
+const openSourceContributions = [
+  {
+    id: "nodejs-65498",
+    repo: "nodejs/node",
+    repoName: "node",
+    org: "Node.js",
+    orgCategory: "nodejs",
+    orgLogo: "/assets/tech/nodejs.svg",
+    prNumber: 65498,
+    title: "url: align URLPatternInit dictionary conversion with WebIDL",
+    role: "Author",
+    status: "Merged",
+    description:
+      "Aligned Node.js URLPatternInit dictionary conversion with official WebIDL specifications, ensuring standard URL pattern matching conformances across the JavaScript engine runtime.",
+    tags: ["C++", "JavaScript", "WebIDL", "V8 Core", "URLPattern"],
+    prLink:
+      "https://github.com/nodejs/node/pull/65498?notification_referrer_id=NT_kwHOCW2dXdoAJFJlcG9zaXRvcnk7MjcxOTM3Nzk7SXNzdWU7NTIyNTU5ODk4MQ#pullrequestreview-5059591325",
+    featured: true,
+    impact: "Tier-1 Runtime Standard Conformance",
+    highlightBadge: "WebIDL URL Standard Alignment",
+  },
+  {
+    id: "kubernetes-141583",
+    repo: "kubernetes/kubernetes",
+    repoName: "kubernetes",
+    org: "Kubernetes",
+    orgCategory: "kubernetes",
+    orgLogo: "/assets/Kubernetes.png",
+    prNumber: 141583,
+    title: "scheduler: deep copy pod before mutating NominatedNodeName in test hook",
+    role: "Mention / Contributor",
+    status: "Merged",
+    description:
+      "Prevented race-condition mutation bugs in upstream kube-scheduler test harnesses by ensuring Pod object references are deep-copied prior to NominatedNodeName mutation in test hooks.",
+    tags: ["Go", "Kube-Scheduler", "Distributed Systems", "Testing"],
+    prLink:
+      "https://github.com/kubernetes/kubernetes/pull/141583?notification_referrer_id=NT_kwHOCW2dXdoAJFJlcG9zaXRvcnk7MjA1ODA0OTg7SXNzdWU7NTI0Nzc0NTAxMg#event-30100885311",
+    featured: true,
+    impact: "Core Scheduler Concurrency Fix",
+    highlightBadge: "Kube-Scheduler Concurrency",
+  },
+  {
+    id: "kirocrew-6729",
+    repo: "kirodotdev/KiroCrew",
+    repoName: "Kiro by AWS",
+    org: "Kiro by AWS",
+    orgCategory: "kirocrew",
+    orgLogo: "/assets/tech/aws.svg",
+    prNumber: 6729,
+    title: "refactor(prepare-pr): collapse resolve_profile tree readers behind TreeReader",
+    role: "Author",
+    status: "Merged",
+    description:
+      "Refactored profile resolution tree readers across the agent pipeline into an encapsulated TreeReader abstraction, improving test isolation and reducing code duplication.",
+    tags: ["Python", "Agentic Systems", "Refactoring", "TreeReader"],
+    prLink:
+      "https://github.com/kirodotdev/KiroCrew/pull/6729?notification_referrer_id=NT_kwHOCW2dXdoAJlJlcG9zaXRvcnk7MTMwMzI1ODg1MDtJc3N1ZTs1Mjg0ODA3NDEx#event-30212021317",
+    featured: true,
+    impact: "Unified Architecture",
+    highlightBadge: "TreeReader Architecture",
+  },
+  {
+    id: "kirocrew-6276",
+    repo: "kirodotdev/KiroCrew",
+    repoName: "Kiro by AWS",
+    org: "Kiro by AWS",
+    orgCategory: "kirocrew",
+    orgLogo: "/assets/tech/aws.svg",
+    prNumber: 6276,
+    title: "fix(skills): gate disabled-app skills across all user-facing surfaces",
+    role: "Author",
+    status: "Merged",
+    description:
+      "Implemented capability gating and state filtering to prevent deactivated application skills from leaking into user-facing interactive surfaces and agent discovery layers.",
+    tags: ["Python", "Skill Discovery", "Bugfix", "UI Integrity"],
+    prLink:
+      "https://github.com/kirodotdev/KiroCrew/pull/6276?notification_referrer_id=NT_kwHOCW2dXdoAJlJlcG9zaXRvcnk7MTMwMzI1ODg1MDtJc3N1ZTs1MjY3MTM4Mjcy#pullrequestreview-5057140115",
+    featured: false,
+    impact: "Multi-Surface Security & Filter",
+    highlightBadge: "Skill Gating & Discovery Filter",
+  },
+  {
+    id: "kirocrew-6235",
+    repo: "kirodotdev/KiroCrew",
+    repoName: "Kiro by AWS",
+    org: "Kiro by AWS",
+    orgCategory: "kirocrew",
+    orgLogo: "/assets/tech/aws.svg",
+    prNumber: 6235,
+    title: "refactor(ops-mission-control): use exported internal_path_matches in test",
+    role: "Author",
+    status: "Merged",
+    description:
+      "Standardized test isolation across mission-control operations by utilizing central exported path matching logic, eliminating duplicate test path resolution rules.",
+    tags: ["Python", "Ops Mission Control", "Test Suite"],
+    prLink:
+      "https://github.com/kirodotdev/KiroCrew/pull/6235?notification_referrer_id=NT_kwHOCW2dXdoAJlJlcG9zaXRvcnk7MTMwMzI1ODg1MDtJc3N1ZTs1MjY0NjUyMDc5#pullrequestreview-5040047884",
+    featured: false,
+    impact: "Clean Path Resolution Reusability",
+    highlightBadge: "Mission Control Test Isolation",
+  },
+  {
+    id: "kirocrew-6227",
+    repo: "kirodotdev/KiroCrew",
+    repoName: "Kiro by AWS",
+    org: "Kiro by AWS",
+    orgCategory: "kirocrew",
+    orgLogo: "/assets/tech/aws.svg",
+    prNumber: 6227,
+    title: "test: pin fail-soft contract for rootdir symlink probe",
+    role: "Author",
+    status: "Merged",
+    description:
+      "Engineered fail-soft contract test coverage asserting resilient edge-case handling when probing filesystem root directory symlinks across diverse environments.",
+    tags: ["Python", "File System", "Symlink Probe", "Contract Tests"],
+    prLink:
+      "https://github.com/kirodotdev/KiroCrew/pull/6227?notification_referrer_id=NT_kwHOCW2dXdoAJlJlcG9zaXRvcnk7MTMwMzI1ODg1MDtJc3N1ZTs1MjY0MjU5MTIw#event-30097146194",
+    featured: false,
+    impact: "Filesystem Contract Hardening",
+    highlightBadge: "Rootdir Symlink Probe Contracts",
+  },
+];
+
 const heroTexts = [
   "Software Developer",
   500,
@@ -945,4 +1078,6 @@ export {
   projectCategories,
   socials,
   heroTexts,
+  openSourceContributions,
+  openSourceCategories,
 };

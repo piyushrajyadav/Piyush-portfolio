@@ -13,6 +13,7 @@ const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: "swap",
+	preload: false,
 	variable: "--font-poppins",
 });
 
@@ -88,7 +89,7 @@ export default function App({ Component, pageProps }) {
 				/>
 			</Head>
 
-			<ThemeProvider attribute="class" defaultTheme="dark">
+			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
 				<main className={`${poppins.variable} font-sans`}>
 					<Component {...pageProps} loading={loading} />
 				</main>

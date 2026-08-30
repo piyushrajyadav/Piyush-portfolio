@@ -6,7 +6,7 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 
 import CanvasLoader from "../Loader";
 import ComputerModel from "./models/ComputerModel";
@@ -20,8 +20,8 @@ function Computers({ isMobile }) {
       <ambientLight intensity={0.65} />
       <spotLight intensity={1} position={[0, 1.5, 0.7]} angle={0.12} />
       <PerspectiveCamera makeDefault position={[0, 0, -8]} fov={30} />
-      <pointLight intensity={2} position={[1, 1.3, 0]} color={"#804dee"} />
-      <pointLight intensity={2} position={[-1, 1.3, 1]} color={"#804dee"} />
+      <pointLight intensity={2} position={[1, 1.3, 0]} color={"#6366f1"} />
+      <pointLight intensity={2} position={[-1, 1.3, 1]} color={"#06b6d4"} />
       <OrbitControls
         enableZoom={false}
         maxPolarAngle={Math.PI / 2}
@@ -45,21 +45,44 @@ function Computers({ isMobile }) {
 }
 
 function ComputersCanvas({ isMobile }) {
+  const [isVisible, setIsVisible] = useState(true);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <Canvas
-      dpr={[1, 2]}
-      camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{
-        outputColorSpace: THREE.SRGBColorSpace,
-        alpha: true,
-      }}
-      className="cursor-pointer"
-    >
-      <Suspense fallback={<CanvasLoader />}>
-        <Computers isMobile={isMobile} />
-      </Suspense>
-      <Preload all />
-    </Canvas>
+    <div ref={containerRef} className="w-full h-full">
+      <Canvas
+        dpr={[1, 1.25]}
+        camera={{ position: [20, 3, 5], fov: 25 }}
+        frameloop={isVisible ? "always" : "never"}
+        gl={{
+          outputColorSpace: THREE.SRGBColorSpace,
+          alpha: true,
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
+        className="cursor-pointer"
+      >
+        <Suspense fallback={<CanvasLoader />}>
+          <Computers isMobile={isMobile} />
+        </Suspense>
+        <Preload all />
+      </Canvas>
+    </div>
   );
 }
 

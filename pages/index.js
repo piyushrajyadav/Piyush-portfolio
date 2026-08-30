@@ -5,6 +5,7 @@ import {
   About,
   Contact,
   Experience,
+  OpenSource,
   Hero,
   Navbar,
   Tech,
@@ -81,6 +82,7 @@ function App({ loading }) {
       </section>
       <Tech />
       <Experience />
+      <OpenSource />
       <Works />
       <Blogs />
       {/* <Feedbacks /> */}

@@ -54,9 +54,9 @@ function Player({ isMobile }) {
         zoom={1.2}
       />
       <RandomizedLight position={[0, 1, 0]} />
-      <pointLight intensity={2} position={[1, 1.5, 0]} color={"#804dee"} />
-      <pointLight intensity={2} position={[-1, 1.5, 1]} color={"#4b42a7"} />
-      <pointLight intensity={2} position={[-1, 0.5, 1]} color={"#804dee"} />
+      <pointLight intensity={2} position={[1, 1.5, 0]} color={"#6366f1"} />
+      <pointLight intensity={2} position={[-1, 1.5, 1]} color={"#06b6d4"} />
+      <pointLight intensity={2} position={[-1, 0.5, 1]} color={"#818cf8"} />
       {!isMobile && (
         <OrbitControls
           makeDefault
@@ -84,17 +84,40 @@ function Player({ isMobile }) {
 }
 
 function PlayerCanvas({ isMobile }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <Canvas
-      dpr={[1, 2]}
-      gl={{
-        outputColorSpace: THREE.SRGBColorSpace,
-        alpha: true,
-      }}
-      style={{ width: "100%", height: "100%", minHeight: "560px" }}
-    >
-      <Player isMobile={isMobile} />
-    </Canvas>
+    <div ref={containerRef} className="w-full h-full min-h-[560px]">
+      <Canvas
+        dpr={[1, 1.25]}
+        frameloop={isVisible ? "always" : "never"}
+        gl={{
+          outputColorSpace: THREE.SRGBColorSpace,
+          alpha: true,
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Player isMobile={isMobile} />
+      </Canvas>
+    </div>
   );
 }
 
